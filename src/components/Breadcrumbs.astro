@@ -1,0 +1,85 @@
+---
+// Generate breadcrumbs from current path
+const base = import.meta.env.BASE_URL;
+const currentPath = Astro.url.pathname;
+
+// Strip the base path prefix to get the relative path segments
+const relativePath = currentPath.startsWith(base) ? currentPath.slice(base.length) : currentPath;
+const pathSegments = relativePath.split('/').filter(segment => segment !== '');
+
+interface Breadcrumb {
+  name: string;
+  href: string;
+}
+
+const breadcrumbs: Breadcrumb[] = [
+  { name: 'Home', href: base }
+];
+
+// Build breadcrumb trail
+let currentHref = base;
+pathSegments.forEach((segment, index) => {
+  currentHref += `${segment}/`;
+
+  // Convert segment to readable name
+  let name = segment.charAt(0).toUpperCase() + segment.slice(1);
+  name = name.replace(/-/g, ' ');
+
+  // Handle special cases
+  if (segment === 'blog' && index < pathSegments.length - 1) {
+    name = 'Blog';
+  } else if (segment === 'services' && index < pathSegments.length - 1) {
+    name = 'Services';
+  }
+
+  breadcrumbs.push({ name, href: currentHref });
+});
+
+// Pre-compute JSON-LD for breadcrumbs
+const bcItems = breadcrumbs.map((crumb, index) => {
+  const item: Record<string, any> = { position: index + 1, name: crumb.name, item: new URL(crumb.href, Astro.site).href };
+  item["@type"] = "ListItem";
+  return item;
+});
+const bcObj: Record<string, any> = { itemListElement: bcItems };
+bcObj["@context"] = "https://schema.org";
+bcObj["@type"] = "BreadcrumbList";
+const breadcrumbJsonLd = JSON.stringify(bcObj);
+---
+
+{breadcrumbs.length > 1 && (
+  <nav aria-label="Breadcrumb" class="bg-gray-50 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto py-3">
+      <ol class="flex items-center space-x-2 text-sm text-gray-500">
+        {breadcrumbs.map((crumb, index) => (
+          <li class="flex items-center">
+            {index > 0 && (
+              <svg class="h-4 w-4 text-gray-400 mx-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+              </svg>
+            )}
+            {index === breadcrumbs.length - 1 ? (
+              <span class="font-medium text-gray-900" aria-current="page">
+                {crumb.name}
+              </span>
+            ) : (
+              <a
+                href={crumb.href}
+                class="hover:text-blue-600 transition-colors"
+                itemprop="item"
+              >
+                <span itemprop="name">{crumb.name}</span>
+              </a>
+            )}
+            {index < breadcrumbs.length - 1 && (
+              <meta itemprop="position" content={(index + 1).toString()} />
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <!-- JSON-LD for Breadcrumbs -->
+    <script type="application/ld+json" set:html={breadcrumbJsonLd} />
+  </nav>
+)}

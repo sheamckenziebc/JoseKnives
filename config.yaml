@@ -1,0 +1,49 @@
+# Art and Soul Pottery - Configuration
+# Studio and Gallery in Telkwa, BC
+
+site:
+  title: "Art and Soul Pottery"
+  description: "Art and Soul Pottery Studio and Gallery in Telkwa, BC — handmade, artistic and functional pottery by Franziska Cody. Offering food, microwave and oven safe stoneware and porcelain, plus crafts from local and international artisans."
+  url: "https://sheamckenziebc.github.io/Franzsika_Pottery"
+  author: "Franziska Cody"
+
+branding:
+  logo: "/assets/logo.svg"
+  primaryColor: "#922b21"
+  secondaryColor: "#c0392b"
+  accentColor: "#c8a96e"
+  fontFamily: "DM Sans, system-ui, sans-serif"
+
+contact:
+  email: "info@artandsoulpottery.ca"
+  phone: "250-846-5727"
+  address: "1269 Hwy 16, Telkwa, BC"
+  businessHours: "Mon, Wed & Thurs 10am-5pm | Other days by appointment"
+
+social:
+  facebook: "https://www.facebook.com/artandsoulpottery/"
+  twitter: ""
+  instagram: "https://www.instagram.com/art_and_soul_pottery/"
+  linkedin: ""
+  youtube: ""
+
+features:
+  blog: false
+  products: true
+  testimonials: false
+  faq: false
+  search: false
+  comments: false
+  analytics: false
+
+integrations:
+  formspree_id: "your-formspree-id"
+  google_analytics: ""
+  map_coordinates:
+    lat: 54.6985
+    lng: -127.0528
+
+seo:
+  keywords: ["pottery Telkwa BC", "handmade pottery Bulkley Valley", "ceramic artist BC", "Art and Soul Pottery", "Franziska Cody pottery", "stoneware Telkwa", "pottery studio gallery BC", "custom pottery BC", "functional pottery Canada", "local artisan gallery Telkwa"]
+  og_image: "/assets/og-image.svg"
+  twitter_card: "summary_large_image"

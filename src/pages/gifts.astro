@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import yaml from 'js-yaml';
+
+const configPath = join(process.cwd(), 'config.yaml');
+const config = yaml.load(readFileSync(configPath, 'utf8'));
+const base = import.meta.env.BASE_URL;
+
+const categories = [
+  { name: "Jewellery", slug: "jewellery", description: "100% silver and gem, wood and sea shell jewelry — unique handcrafted pieces." },
+  { name: "Bags", slug: "bags", description: "Handcrafted bags from Nepal and Thailand." },
+  { name: "Misc", slug: "misc", description: "Prayer flags, unique gifts and other treasures from around the world." }
+];
+---
+
+<BaseLayout title={`Other Gifts | ${config.site.title}`} description="Browse unique gifts at Art and Soul Pottery — silver and gem jewellery, handcrafted bags from Nepal and Thailand, prayer flags and more.">
+  <Header slot="header" />
+
+  <!-- Hero -->
+  <section class="relative bg-gradient-to-br from-stone-900 via-red-900 to-stone-800 py-20">
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.15&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-amber-400 font-semibold text-sm uppercase tracking-wider">Gallery</span>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
+        Other <span class="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">Gifts</span>
+      </h1>
+      <p class="text-xl text-red-100 max-w-3xl mx-auto leading-relaxed">
+        Art and Soul Pottery offers a wide selection of 100% silver and gem, wood and sea shell jewelry as well as bags and prayer flags from Nepal and Thailand.
+      </p>
+    </div>
+  </section>
+
+  <!-- Wave Divider -->
+  <div class="bg-gradient-to-br from-stone-900 via-red-900 to-stone-800 -mb-1">
+    <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none">
+      <path d="M0 60L60 52C120 44 240 28 360 24C480 20 600 28 720 32C840 36 960 36 1080 32C1200 28 1320 20 1380 16L1440 12V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="white"/>
+    </svg>
+  </div>
+
+  <!-- Gift Categories -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-children">
+        {categories.map((cat) => (
+          <div class="animate-on-scroll group bg-stone-50 rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <div class="h-56 bg-gradient-to-br from-red-100 to-amber-100 flex items-center justify-center relative overflow-hidden">
+              <img
+                src={`${base}assets/gifts-${cat.slug}.jpg`}
+                alt={`${cat.name} at Art and Soul Pottery`}
+                class="w-full h-full object-cover"
+                loading="lazy"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="hidden items-center justify-center absolute inset-0 bg-gradient-to-br from-red-100 to-amber-100">
+                <svg class="w-16 h-16 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></svg>
+              </div>
+              <div class="absolute top-3 right-3 bg-white/90 text-xs font-bold text-gray-700 px-2 py-1 rounded-full">{cat.name}</div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-900 mb-2" style="font-family: 'Cormorant Garamond', serif;">{cat.name}</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">{cat.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-12 animate-on-scroll">
+        <p class="text-gray-600 mb-6">Visit the gallery to browse our full selection of gifts, or contact us to inquire about availability.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href={`${base}contact/`} class="inline-flex items-center justify-center bg-red-800 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-900 transition-all shadow-lg">
+            Contact Us
+          </a>
+          <a href={`${base}gallery/`} class="inline-flex items-center justify-center border-2 border-red-800 text-red-800 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-red-50 transition-all">
+            View Pottery Gallery
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

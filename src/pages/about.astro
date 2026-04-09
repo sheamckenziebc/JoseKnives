@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import yaml from 'js-yaml';
+
+const configPath = join(process.cwd(), 'config.yaml');
+const config = yaml.load(readFileSync(configPath, 'utf8'));
+const base = import.meta.env.BASE_URL;
+
+const aboutLogoUrl = new URL(config.branding.logo, Astro.site).href;
+const contactPt: Record<string, any> = { telephone: config.contact.phone, contactType: "Customer Service", email: config.contact.email };
+contactPt["@type"] = "ContactPoint";
+const addr: Record<string, any> = { streetAddress: config.contact.address };
+addr["@type"] = "PostalAddress";
+const mainEntity: Record<string, any> = { name: config.site.title, description: config.site.description, url: config.site.url, logo: aboutLogoUrl, contactPoint: contactPt, address: addr };
+mainEntity["@type"] = "Organization";
+const aboutObj: Record<string, any> = { mainEntity };
+aboutObj["@context"] = "https://schema.org";
+aboutObj["@type"] = "AboutPage";
+const aboutJsonLd = JSON.stringify(aboutObj);
+---
+
+<BaseLayout title={`Artist | ${config.site.title}`} description="Meet Franziska Cody — ceramic artist at Art and Soul Pottery in Telkwa, BC. Working in clay since 2006, creating wheel thrown and hand built pottery in the Bulkley Valley.">
+  <Header slot="header" />
+
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-stone-900 via-red-900 to-stone-800 py-20">
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.15&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="text-amber-400 font-semibold text-sm uppercase tracking-wider">About the Artist</span>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
+          Franziska <span class="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">Cody</span>
+        </h1>
+        <p class="text-xl text-red-100 leading-relaxed">
+          Ceramic artist working in clay since 2006 in the beautiful Bulkley Valley
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave Divider -->
+  <div class="bg-gradient-to-br from-stone-900 via-red-900 to-stone-800 -mb-1">
+    <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none">
+      <path d="M0 60L60 52C120 44 240 28 360 24C480 20 600 28 720 32C840 36 960 36 1080 32C1200 28 1320 20 1380 16L1440 12V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="white"/>
+    </svg>
+  </div>
+
+  <!-- Artist Story -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div class="animate-on-scroll">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6" style="font-family: 'Cormorant Garamond', serif;">
+            About Me
+          </h2>
+          <div class="prose prose-lg text-gray-600 space-y-6">
+            <p class="leading-relaxed">
+              I have been working in clay since 2006. It all started with meeting my husband and deciding to permanently move to Canada. I had to wait for my permanent residency for about one year, during which I wasn't able to work and therefore decided to dedicate myself completely to what I love most – being creative. I filled my days with painting, writing, wood work and discovered pottery along the way.
+            </p>
+            <p class="leading-relaxed">
+              I became a member of the Prince George Potters Guild and enrolled in a couple of classes offered by the organization. I quickly became fascinated by the meditative nature of working with clay, the things that it continues to teach me, and the endless ways of creatively applying its use, which resulted in the continuation of producing wheel thrown and hand build pottery ever since.
+            </p>
+            <p class="leading-relaxed">
+              Besides creating functional dinnerware, decorative vessels, sculptures and masks, I have been exploring ways of crafting jewelry, wall murals, tiles and home fixtures such as sinks, clocks and lamps from stoneware and porcelain.
+            </p>
+            <p class="leading-relaxed">
+              Since June 2009, with the support of my husband, I have been working as a full time ceramic artist out of my studio and gallery in the beautiful Bulkley Valley. My work is strongly influenced by patterns and forms derived from nature and the feminine, as I am constantly inspired by the beauty of mother earth.
+            </p>
+          </div>
+        </div>
+        <div class="relative animate-on-scroll">
+          <img
+            src={`${base}assets/artist-portrait.jpg`}
+            alt="Franziska Cody at the potter's wheel"
+            class="rounded-2xl shadow-lg w-full h-auto object-cover"
+            loading="lazy"
+          />
+          <!-- Stats overlay -->
+          <div class="absolute -bottom-8 left-8 right-8 bg-white rounded-xl shadow-xl p-6 grid grid-cols-2 gap-4 text-center">
+            <div>
+              <div class="text-3xl font-extrabold text-red-800">2006</div>
+              <div class="text-sm text-gray-500 font-medium">Working in Clay</div>
+            </div>
+            <div class="border-l border-gray-200">
+              <div class="text-3xl font-extrabold text-red-800">2009</div>
+              <div class="text-sm text-gray-500 font-medium">Gallery Opened</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technique & Philosophy -->
+  <section class="py-20 bg-stone-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12 animate-on-scroll">
+          <span class="text-red-800 font-semibold text-sm uppercase tracking-wider">Craft & Philosophy</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4" style="font-family: 'Cormorant Garamond', serif;">
+            Technique & Vision
+          </h2>
+          <div class="w-16 h-1 bg-amber-500 mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="animate-on-scroll prose prose-lg text-gray-600 space-y-6 max-w-none">
+          <p class="leading-relaxed">
+            I am using slip application, carving and wax resist techniques as well as vibrant glaze colour applications to define and enhance the surface of my pottery. All pieces are fired with the use of a electric Kiln in a oxidation atmosphere to 1220°C.
+          </p>
+          <p class="leading-relaxed">
+            I strive to produce pottery that has a sense of strength and stability, as well as a certain vitality, flow and aliveness. Equally important to me is the satisfaction of creating work which honours, celebrates and embraces daily life and enhances the feeling of harmony within our living environment.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Artist Statement -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12 animate-on-scroll">
+          <span class="text-red-800 font-semibold text-sm uppercase tracking-wider">Artist Statement</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4" style="font-family: 'Cormorant Garamond', serif;">
+            On Creativity & Clay
+          </h2>
+          <div class="w-16 h-1 bg-amber-500 mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="animate-on-scroll bg-stone-50 rounded-2xl p-8 md:p-12 border border-gray-100">
+          <blockquote class="text-lg text-gray-600 leading-relaxed italic mb-6" style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;">
+            <p class="mb-6">
+              "If we can stay 'on center' and look with clear seeing eyes and compassionate hearts at what we have done, we may advance in self-knowledge and in knowledge of our materials and of the world in its larger concerns."
+            </p>
+            <cite class="text-gray-500 text-sm not-italic block">— M.C. Richards, American poet, potter and writer</cite>
+          </blockquote>
+
+          <div class="prose prose-lg text-gray-600 space-y-6 mt-8 not-italic">
+            <p class="leading-relaxed">
+              I think that we come to better know ourselves through the images we create and the actions we are taking as they are a manifestation of our conscious and subconscious intentions. Life at large then seems to be but a creative playground offering endless opportunities to explore the essence of our being, which I believe is of an ever evolving, spiritual nature.
+            </p>
+            <p class="leading-relaxed">
+              Through creating pottery and reflecting on its many metaphorical aspects, I have been both inspired and challenged by themes such as balance, measures of beauty and harmony, freedom, boundaries and limitations, expectations, attachment and transformation.
+            </p>
+            <p class="leading-relaxed">
+              It is in working with clay, pigment and in poetry that I come to understand the importance of honouring the creative process above all, including challenge and satisfaction equally. I feel then, that when we put pure intentions into every step along our path, outcomes will be a direct reflection of those objectives, as I believe, that in each moment we express what comes from the heart, we touch beauty.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="relative py-20 bg-gradient-to-br from-red-900 to-stone-900 overflow-hidden">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" style="font-family: 'Cormorant Garamond', serif;">
+        Visit the Studio
+      </h2>
+      <p class="text-xl text-red-100 mb-8 max-w-2xl mx-auto">
+        Come watch pottery being made and browse the gallery at 1269 Hwy 16, Telkwa, BC.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={`${base}gallery/`} class="inline-flex items-center justify-center bg-amber-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-amber-500 transition-all shadow-lg">
+          View Pottery Gallery
+        </a>
+        <a href={`${base}contact/`} class="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition-all">
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={aboutJsonLd} />
+  <Footer slot="footer" />
+</BaseLayout>

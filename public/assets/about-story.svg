@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="aboutBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f9ff"/>
+      <stop offset="100%" stop-color="#e0f2fe"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#aboutBg)"/>
+  <!-- Construction scene -->
+  <!-- Building frame -->
+  <rect x="200" y="180" width="400" height="220" fill="none" stroke="#1e3a5f" stroke-width="3"/>
+  <line x1="200" y1="280" x2="600" y2="280" stroke="#1e3a5f" stroke-width="2"/>
+  <line x1="200" y1="340" x2="600" y2="340" stroke="#1e3a5f" stroke-width="2"/>
+  <line x1="300" y1="180" x2="300" y2="400" stroke="#1e3a5f" stroke-width="2"/>
+  <line x1="400" y1="180" x2="400" y2="400" stroke="#1e3a5f" stroke-width="2"/>
+  <line x1="500" y1="180" x2="500" y2="400" stroke="#1e3a5f" stroke-width="2"/>
+  <!-- Roof truss -->
+  <path d="M180 185 L400 80 L620 185" fill="none" stroke="#f59e0b" stroke-width="3"/>
+  <line x1="290" y1="133" x2="290" y2="185" stroke="#f59e0b" stroke-width="2"/>
+  <line x1="400" y1="80" x2="400" y2="185" stroke="#f59e0b" stroke-width="2"/>
+  <line x1="510" y1="133" x2="510" y2="185" stroke="#f59e0b" stroke-width="2"/>
+  <!-- Crane -->
+  <rect x="650" y="100" width="8" height="300" fill="#64748b"/>
+  <rect x="648" y="400" width="50" height="12" fill="#64748b"/>
+  <line x1="654" y1="100" x2="750" y2="100" stroke="#64748b" stroke-width="4"/>
+  <line x1="654" y1="100" x2="700" y2="70" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="700" y1="70" x2="750" y2="100" stroke="#94a3b8" stroke-width="2"/>
+  <!-- Crane cable -->
+  <line x1="720" y1="100" x2="720" y2="180" stroke="#94a3b8" stroke-width="1.5"/>
+  <rect x="710" y="180" width="20" height="15" fill="#f59e0b"/>
+  <!-- Workers (simplified) -->
+  <!-- Worker 1 -->
+  <circle cx="340" cy="355" r="12" fill="#1e3a5f"/>
+  <rect x="332" y="367" width="16" height="30" rx="3" fill="#2563eb"/>
+  <rect x="330" y="397" width="8" height="15" fill="#1e3a5f"/>
+  <rect x="342" y="397" width="8" height="15" fill="#1e3a5f"/>
+  <!-- Hard hat -->
+  <rect x="328" y="343" width="24" height="5" rx="2" fill="#f59e0b"/>
+  <!-- Worker 2 -->
+  <circle cx="460" cy="295" r="12" fill="#1e3a5f"/>
+  <rect x="452" y="307" width="16" height="30" rx="3" fill="#2563eb"/>
+  <rect x="450" y="337" width="8" height="15" fill="#1e3a5f"/>
+  <rect x="462" y="337" width="8" height="15" fill="#1e3a5f"/>
+  <rect x="448" y="283" width="24" height="5" rx="2" fill="#f59e0b"/>
+  <!-- Tool belt line -->
+  <line x1="452" y1="320" x2="468" y2="320" stroke="#f59e0b" stroke-width="2"/>
+  <!-- Ground -->
+  <rect x="0" y="412" width="800" height="88" fill="#e2e8f0"/>
+  <!-- Materials on ground -->
+  <rect x="80" y="385" width="80" height="27" fill="#d97706" opacity="0.6"/>
+  <rect x="85" y="375" width="70" height="12" fill="#92400e" opacity="0.5"/>
+  <!-- Blueprint/plans -->
+  <rect x="100" y="420" width="40" height="30" rx="2" fill="white" stroke="#2563eb" stroke-width="1"/>
+  <line x1="108" y1="428" x2="132" y2="428" stroke="#2563eb" stroke-width="0.5"/>
+  <line x1="108" y1="434" x2="125" y2="434" stroke="#2563eb" stroke-width="0.5"/>
+  <line x1="108" y1="440" x2="130" y2="440" stroke="#2563eb" stroke-width="0.5"/>
+</svg>

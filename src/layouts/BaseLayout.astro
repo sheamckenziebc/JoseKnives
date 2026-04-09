@@ -1,0 +1,465 @@
+---
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import yaml from 'js-yaml';
+import { ViewTransitions } from 'astro:transitions';
+
+// Load configuration
+const configPath = join(process.cwd(), 'config.yaml');
+const config = yaml.load(readFileSync(configPath, 'utf8'));
+
+const base = import.meta.env.BASE_URL;
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = config.site.title,
+  description = config.site.description,
+  ogImage = config.seo.og_image,
+  canonicalURL = Astro.url.href,
+  noindex = false
+} = Astro.props;
+
+const fullTitle = title === config.site.title ? title : `${title} | ${config.site.title}`;
+
+// Pre-compute JSON-LD data for the script
+const logoUrl = new URL(config.branding.logo, Astro.site).href;
+const sameAsList = [
+  config.social.facebook,
+  config.social.twitter,
+  config.social.instagram,
+  config.social.linkedin
+].filter(Boolean);
+const jsonLdObj: Record<string, any> = {};
+jsonLdObj["@context"] = "https://schema.org";
+jsonLdObj["@type"] = "LocalBusiness";
+jsonLdObj.name = config.site.title;
+jsonLdObj.description = config.site.description;
+jsonLdObj.url = config.site.url;
+jsonLdObj.logo = logoUrl;
+jsonLdObj.image = logoUrl;
+jsonLdObj.telephone = config.contact.phone;
+jsonLdObj.email = config.contact.email;
+jsonLdObj.priceRange = "$$";
+const addr: Record<string, any> = {
+  streetAddress: "1269 Hwy 16",
+  addressLocality: "Telkwa",
+  addressRegion: "BC",
+  postalCode: "V0J 2X0",
+  addressCountry: "CA"
+};
+addr["@type"] = "PostalAddress";
+jsonLdObj.address = addr;
+const geo: Record<string, any> = {
+  latitude: config.integrations.map_coordinates.lat,
+  longitude: config.integrations.map_coordinates.lng
+};
+geo["@type"] = "GeoCoordinates";
+jsonLdObj.geo = geo;
+jsonLdObj.openingHoursSpecification = [
+  { dayOfWeek: ["Monday","Wednesday","Thursday"], opens: "10:00", closes: "17:00" }
+].map(spec => { const s: Record<string, any> = { ...spec }; s["@type"] = "OpeningHoursSpecification"; return s; });
+jsonLdObj.areaServed = { name: "Bulkley Valley, British Columbia" };
+jsonLdObj.areaServed["@type"] = "GeoCircle";
+jsonLdObj.sameAs = sameAsList;
+const jsonLd = JSON.stringify(jsonLdObj);
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- SEO Meta Tags -->
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content={config.seo.keywords.join(', ')} />
+  <meta name="author" content={config.site.author} />
+  <link rel="canonical" href={canonicalURL} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+  <meta property="og:site_name" content={config.site.title} />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content={config.seo.twitter_card} />
+  <meta name="twitter:url" content={canonicalURL} />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(ogImage, Astro.site).href} />
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json" set:html={jsonLd} />
+
+  <!-- Critical CSS Variables + Animations -->
+  <style define:vars={{
+    primaryColor: config.branding.primaryColor,
+    secondaryColor: config.branding.secondaryColor,
+    accentColor: config.branding.accentColor,
+    fontFamily: config.branding.fontFamily
+  }}>
+    :root {
+      --color-primary: var(--primaryColor);
+      --color-secondary: var(--secondaryColor);
+      --color-accent: var(--accentColor);
+      --font-family: var(--fontFamily);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', var(--font-family);
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Skip link for accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: #922b21;
+      color: #fff;
+      padding: 8px 16px;
+      text-decoration: none;
+      z-index: 1000;
+      border-radius: 0 0 6px 6px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* Scroll-driven reveal animations */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .animate-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger children animations */
+    .stagger-children .animate-on-scroll:nth-child(1) { transition-delay: 0ms; }
+    .stagger-children .animate-on-scroll:nth-child(2) { transition-delay: 100ms; }
+    .stagger-children .animate-on-scroll:nth-child(3) { transition-delay: 200ms; }
+    .stagger-children .animate-on-scroll:nth-child(4) { transition-delay: 300ms; }
+    .stagger-children .animate-on-scroll:nth-child(5) { transition-delay: 400ms; }
+    .stagger-children .animate-on-scroll:nth-child(6) { transition-delay: 500ms; }
+
+    /* Respect reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-on-scroll {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    /* Smooth page transitions */
+    main {
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      main {
+        animation: none;
+      }
+    }
+
+    /* Mobile sticky CTA bar */
+    .mobile-cta-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      background: white;
+      border-top: 1px solid #e5e7eb;
+      padding: 12px 16px;
+      display: flex;
+      gap: 8px;
+      box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-cta-bar.visible {
+      transform: translateY(0);
+    }
+
+    @media (min-width: 768px) {
+      .mobile-cta-bar {
+        display: none;
+      }
+    }
+
+    /* Offset for anchor scroll targets to account for sticky header */
+    [id] {
+      scroll-margin-top: 80px;
+    }
+
+    /* Focus visible styling */
+    :focus-visible {
+      outline: 2px solid #2563eb;
+      outline-offset: 2px;
+    }
+
+    /* Enhanced card hover effects */
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      border-color: #c8a96e;
+    }
+
+    .card-hover .card-icon {
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .card-hover:hover .card-icon {
+      background-color: #c8a96e;
+      transform: scale(1.1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card-hover:hover {
+        transform: none;
+      }
+      .card-hover:hover .card-icon {
+        transform: none;
+      }
+    }
+
+    /* Selection color */
+    ::selection {
+      background-color: #922b21;
+      color: #fff;
+    }
+
+    /* Smooth button press feedback */
+    button:active:not(:disabled),
+    a[class*="bg-"]:active {
+      transform: scale(0.98);
+    }
+
+    /* Form input focus transitions */
+    input, select, textarea {
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* Loading spinner animation */
+    .animate-spin {
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Gradient text utility */
+    .text-gradient {
+      background: linear-gradient(135deg, #c8a96e, #b8955a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Smooth image loading */
+    img {
+      transition: opacity 0.3s ease;
+    }
+  </style>
+
+  <!-- View Transitions for SPA-like navigation -->
+  <ViewTransitions />
+
+  <!-- Analytics (if enabled) -->
+  {config.integrations.google_analytics && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${config.integrations.google_analytics}`}></script>
+      <script set:html={`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${config.integrations.google_analytics}');
+      `} />
+    </>
+  )}
+</head>
+
+<body>
+  <!-- Skip Navigation Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header -->
+  <header>
+    <slot name="header" />
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <slot name="footer" />
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button
+    id="back-to-top"
+    class="fixed bottom-20 md:bottom-8 right-4 z-30 w-11 h-11 bg-red-800 text-white rounded-full shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:bg-red-900 hover:shadow-xl hover:-translate-y-0.5"
+    aria-label="Back to top"
+  >
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
+  </button>
+
+  <!-- Mobile Sticky CTA Bar -->
+  <div class="mobile-cta-bar" id="mobile-cta" role="complementary" aria-label="Quick actions">
+    <a
+      href={`tel:${config.contact.phone}`}
+      class="flex-1 inline-flex items-center justify-center bg-red-800 text-white py-3 rounded-lg font-semibold text-sm hover:bg-red-900 transition-colors"
+    >
+      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+      Call Now
+    </a>
+    <a
+      href={`${base}contact/`}
+      class="flex-1 inline-flex items-center justify-center bg-amber-600 text-white py-3 rounded-lg font-bold text-sm hover:bg-amber-500 transition-colors"
+    >
+      Visit Studio
+    </a>
+  </div>
+
+  <!-- Scroll animation observer + mobile CTA logic -->
+  <script>
+    function initPageScripts() {
+      // Intersection Observer for scroll animations
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      );
+
+      document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Counter animation for stat numbers
+      const counterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              const target = parseFloat(el.dataset.count || '0');
+              const suffix = el.dataset.suffix || '';
+              const duration = 1500;
+              const start = performance.now();
+              const isDecimal = target % 1 !== 0;
+
+              function animate(now: number) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = eased * target;
+                el.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current).toString()) + suffix;
+                if (progress < 1) requestAnimationFrame(animate);
+              }
+              requestAnimationFrame(animate);
+              counterObserver.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+
+      document.querySelectorAll('[data-count]').forEach((el) => {
+        counterObserver.observe(el);
+      });
+    }
+
+    // Mobile CTA bar + Back to Top (only bind scroll once)
+    function initScrollListeners() {
+      const mobileCta = document.getElementById('mobile-cta');
+      const backToTop = document.getElementById('back-to-top');
+
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        if (mobileCta) {
+          if (scrollY > 400) {
+            mobileCta.classList.add('visible');
+          } else {
+            mobileCta.classList.remove('visible');
+          }
+        }
+        if (backToTop) {
+          if (scrollY > 600) {
+            backToTop.style.opacity = '1';
+            backToTop.style.pointerEvents = 'auto';
+          } else {
+            backToTop.style.opacity = '0';
+            backToTop.style.pointerEvents = 'none';
+          }
+        }
+      }, { passive: true });
+
+      if (backToTop) {
+        backToTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+    }
+
+    // Re-run on View Transitions navigation
+    document.addEventListener('astro:page-load', initPageScripts);
+    initScrollListeners();
+  </script>
+</body>
+</html>

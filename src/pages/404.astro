@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import yaml from 'js-yaml';
+
+const configPath = join(process.cwd(), 'config.yaml');
+const config = yaml.load(readFileSync(configPath, 'utf8'));
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title={`Page Not Found | ${config.site.title}`} description="The page you're looking for doesn't exist." noindex={true}>
+  <Header slot="header" />
+
+  <section class="py-32 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="text-8xl font-extrabold text-red-200 mb-4">404</div>
+      <h1 class="text-3xl font-bold text-gray-900 mb-4" style="font-family: 'Cormorant Garamond', serif;">Page Not Found</h1>
+      <p class="text-xl text-gray-600 mb-8">The page you're looking for doesn't exist or has been moved.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={base} class="inline-flex items-center justify-center bg-red-800 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-900 transition-all">
+          Back to Home
+        </a>
+        <a href={`${base}gallery/`} class="inline-flex items-center justify-center border-2 border-red-800 text-red-800 px-6 py-3 rounded-lg font-semibold hover:bg-red-50 transition-all">
+          View Pottery Gallery
+        </a>
+        <a href={`${base}contact/`} class="inline-flex items-center justify-center border-2 border-gray-300 text-gray-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-all">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

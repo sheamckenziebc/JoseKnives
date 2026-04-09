@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="favGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#922b21"/>
+      <stop offset="100%" stop-color="#c0392b"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="24" fill="url(#favGrad)"/>
+  <!-- Pottery spiral -->
+  <path d="M64 28 C44 28, 32 44, 32 60 C32 76, 44 92, 64 92 C76 92, 84 84, 84 72 C84 62, 76 54, 66 54 C58 54, 52 60, 52 66 C52 72, 56 76, 62 76" fill="none" stroke="#c8a96e" stroke-width="6" stroke-linecap="round"/>
+</svg>
