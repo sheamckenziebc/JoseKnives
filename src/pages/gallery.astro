@@ -11,31 +11,30 @@ const config = yaml.load(readFileSync(configPath, 'utf8'));
 const base = import.meta.env.BASE_URL;
 
 const items = [
-  { file: "knife-01.jpg", title: "Chef's Knife", category: "kitchen", desc: "Full-tang chef's knife, hardwood handle" },
-  { file: "knife-02.jpg", title: "Custom Kitchen Knife", category: "kitchen", desc: "Hand-ground blade, stabilized burl handle" },
-  { file: "knife-03.jpg", title: "Hunter's Drop Point", category: "hunting", desc: "Drop-point hunter, natural bone handle" },
-  { file: "knife-04.jpg", title: "Field Knife", category: "hunting", desc: "Fixed blade, brass guard and pommel" },
-  { file: "knife-05.jpg", title: "Skinning Knife", category: "hunting", desc: "Curved skinner for field dressing" },
-  { file: "knife-06.jpg", title: "Art Knife", category: "collector", desc: "Collector's piece, decorative handle inlay" },
-  { file: "knife-07.jpg", title: "Presentation Knife", category: "collector", desc: "Display-grade blade, premium exotic materials" },
-  { file: "knife-08.jpg", title: "Custom Bowie", category: "collector", desc: "Classic bowie, collector-grade finish" },
-  { file: "knife-09.jpg", title: "Custom Commission", category: "custom", desc: "Client commission — custom specs and steel" },
-  { file: "knife-10.jpg", title: "Santoku", category: "kitchen", desc: "Japanese-influenced kitchen knife" },
-  { file: "knife-11.jpg", title: "Camp Knife", category: "hunting", desc: "Heavy-duty camp knife, full tang" },
-  { file: "knife-12.jpg", title: "Fillet Knife", category: "kitchen", desc: "Flexible fillet knife, long narrow blade" },
-  { file: "knife-13.jpg", title: "Collector's Dagger", category: "collector", desc: "Double-edged collector's piece, exotic handle" },
-  { file: "knife-14.jpg", title: "Knife Sheath", category: "leather", desc: "Hand-stitched leather sheath, oil-tanned hide" },
-  { file: "knife-15.jpg", title: "Leather Belt & Sheath", category: "leather", desc: "Matching sheath and belt loop, saddle-stitched" },
-  { file: "knife-16.jpg", title: "Custom Leather Work", category: "leather", desc: "Bespoke leather goods — sheaths, straps and more" },
+  { file: "knife1.jpg", title: "[Product Title]", category: "knives", desc: "[Product Description Here]" },
+  { file: "knife2.jpg", title: "[Product Title]", category: "knives", desc: "[Product Description Here]" },
+  { file: "knife3.jpg", title: "[Product Title]", category: "knives", desc: "[Product Description Here]" },
+  { file: "knife4.jpg", title: "[Product Title]", category: "knives", desc: "[Product Description Here]" },
+  { file: "knife5.jpg", title: "[Product Title]", category: "knives", desc: "[Product Description Here]" },
+  { file: "knife6.jpg", title: "[Product Title]", category: "knives", desc: "[Product Description Here]" },
+  { file: "knife7.jpg", title: "[Product Title]", category: "knives", desc: "[Product Description Here]" },
+  { file: "knife8.jpg", title: "[Product Title]", category: "knives", desc: "[Product Description Here]" },
+  { file: "sword.jpg", title: "[Product Title]", category: "swords", desc: "[Product Description Here]" },
+  { file: "sword2.jpg", title: "[Product Title]", category: "swords", desc: "[Product Description Here]" },
+  { file: "axe.jpg", title: "[Product Title]", category: "swords", desc: "[Product Description Here]" },
+  { file: "letteropener.jpg", title: "[Product Title]", category: "swords", desc: "[Product Description Here]" },
+  { file: "leatherbags.jpg", title: "[Product Title]", category: "leather", desc: "[Product Description Here]" },
+  { file: "sheaths.jpg", title: "[Product Title]", category: "leather", desc: "[Product Description Here]" },
+  { file: "leatherboots.jpg", title: "[Product Title]", category: "apparel", desc: "[Product Description Here]" },
+  { file: "bag.jpg", title: "[Product Title]", category: "apparel", desc: "[Product Description Here]" },
 ];
 
 const categories = [
   { slug: "all", label: "All Work" },
-  { slug: "kitchen", label: "Kitchen & Chef's" },
-  { slug: "hunting", label: "Hunting & Field" },
-  { slug: "collector", label: "Collector's Pieces" },
+  { slug: "knives", label: "Knives" },
+  { slug: "swords", label: "Swords & Other Blades" },
   { slug: "leather", label: "Fine Leatherwork" },
-  { slug: "custom", label: "Custom Orders" },
+  { slug: "apparel", label: "Apparel" },
 ];
 ---
 
@@ -46,7 +45,7 @@ const categories = [
   <section class="relative py-28 overflow-hidden" style="background:#0a0d14;">
     <div class="absolute inset-0" style="background: radial-gradient(ellipse at 80% 50%, rgba(45,74,110,0.3) 0%, transparent 55%), radial-gradient(ellipse at 10% 70%, rgba(180,60,0,0.12) 0%, transparent 50%);"></div>
     <div class="absolute inset-0">
-      <img src={`${base}assets/knife-06.jpg`} alt="" class="w-full h-full object-cover opacity-15" aria-hidden="true" />
+      <img src={`${base}assets/knife6.jpg`} alt="" class="w-full h-full object-cover opacity-15" aria-hidden="true" />
       <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(10,13,20,0.95) 0%,rgba(28,10,4,0.7) 100%);"></div>
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
