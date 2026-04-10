@@ -11,83 +11,66 @@ const config = yaml.load(readFileSync(configPath, 'utf8'));
 const base = import.meta.env.BASE_URL;
 
 const steps = [
-  {
-    number: "01",
-    title: "Get in Touch",
-    desc: "Send an email describing what you have in mind — knife type, intended use, any handle material or steel preferences, and budget if you have one. No idea is too vague to start with."
-  },
-  {
-    number: "02",
-    title: "Design Discussion",
-    desc: "We'll go back and forth on the details: blade profile, length, grind, handle shape and materials. Photos of similar work are welcome. This stage ensures the knife is built around your needs."
-  },
-  {
-    number: "03",
-    title: "Forging & Grinding",
-    desc: "Work begins at the forge. The blade profile is cut and shaped, then ground to geometry. Heat treatment is done in-house to achieve the target hardness for the steel selected."
-  },
-  {
-    number: "04",
-    title: "Handle Work & Finishing",
-    desc: "Handle materials are shaped, fitted and secured. The blade is hand-sanded through progressive grits to the agreed finish. Every edge is sharpened before the knife goes out."
-  },
-  {
-    number: "05",
-    title: "Delivery",
-    desc: "Completed knives are shipped carefully or arranged for pickup. A basic care card is included. Lead time varies — typically several weeks depending on current workload."
-  }
+  { number: "01", title: "Get in Touch", desc: "Send an email describing what you have in mind — piece type, intended use, materials preference, and budget if you have one. No idea is too rough to start with." },
+  { number: "02", title: "Design Discussion", desc: "We'll go back and forth on the details. For knives: blade profile, length, grind, steel and handle. For leatherwork: design, hide type, stitching and hardware. Photos of reference work are welcome." },
+  { number: "03", title: "Forging & Crafting", desc: "Work begins. Blades are forged, ground and heat-treated. Leather goods are cut, tooled if specified, and saddle-stitched by hand. Everything is built to spec before finishing begins." },
+  { number: "04", title: "Finishing", desc: "Blades are hand-sanded and sharpened. Handles are shaped, fitted and secured. Leather is burnished, conditioned and inspected. Every piece is tested before it goes out." },
+  { number: "05", title: "Delivery", desc: "Completed pieces are shipped carefully or arranged for pickup. Lead time varies depending on current workload — ask when you get in touch." },
 ];
 ---
 
-<BaseLayout title={`Custom Orders | ${config.site.title}`} description="How to commission a custom knife from J.M. Amoedo. Every blade is made to order — from design consultation through forging, finishing and delivery.">
+<BaseLayout title={`Custom Orders | ${config.site.title}`} description="How to commission a custom knife or leather piece from J.M. Amoedo. Every piece is made to order — from design through making and delivery.">
   <Header slot="header" />
 
   <!-- Hero -->
-  <section class="relative py-24 overflow-hidden" style="background-color:#0f1923;">
+  <section class="relative py-28 overflow-hidden" style="background:#0a0d14;">
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse at 30% 50%, rgba(180,60,0,0.14) 0%, transparent 55%), radial-gradient(ellipse at 80% 20%, rgba(45,74,110,0.25) 0%, transparent 50%);"></div>
     <div class="absolute inset-0">
-      <img
-        src={`${base}assets/knife-09.jpg`}
-        alt="Custom knife commission process"
-        class="w-full h-full object-cover opacity-20"
-      />
-      <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(15,25,35,0.92) 0%, rgba(28,42,58,0.75) 100%);"></div>
+      <img src={`${base}assets/knife-09.jpg`} alt="" class="w-full h-full object-cover opacity-15" aria-hidden="true" />
+      <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(10,13,20,0.95) 0%,rgba(28,10,4,0.65) 100%);"></div>
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="font-semibold text-sm uppercase tracking-wider mb-4 block" style="color:#c8a96e;">Bespoke Blades</span>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
-        Custom <span style="background: linear-gradient(90deg, #c8a96e, #e8c98e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Orders</span>
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <div class="h-px w-10 opacity-60" style="background:#d4500a;"></div>
+        <span class="text-xs font-bold uppercase tracking-[0.25em]" style="color:#d4500a;">Bespoke Work</span>
+        <div class="h-px w-10 opacity-60" style="background:#d4500a;"></div>
+      </div>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-2 mb-6" style="font-family:'Cormorant Garamond',serif; letter-spacing:-0.02em;">
+        Custom <span style="background:linear-gradient(90deg,#c8a96e,#e8c98e,#c8a96e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Orders</span>
       </h1>
-      <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-        Every knife starts with a conversation. Here's how to commission one.
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed" style="font-weight:300;">
+        Every piece starts with a conversation. Here's how commissioning works.
       </p>
     </div>
   </section>
 
-  <!-- Wave Divider -->
-  <div class="-mb-1" style="background-color:#0f1923;">
-    <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none">
-      <path d="M0 60L60 52C120 44 240 28 360 24C480 20 600 28 720 32C840 36 960 36 1080 32C1200 28 1320 20 1380 16L1440 12V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="white"/>
+  <!-- Wave: hero → steel -->
+  <div class="-mb-1" style="background:#0a0d14;">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full block" preserveAspectRatio="none">
+      <path d="M0 80L80 65C160 50 320 20 480 15C640 10 800 30 960 38C1120 46 1280 38 1360 34L1440 30V80H0Z" fill="#0f1923"/>
     </svg>
   </div>
 
-  <!-- Process Steps -->
-  <section class="py-20 bg-white">
+  <!-- Process Steps — steel -->
+  <section class="py-24" style="background:#0f1923;">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14 animate-on-scroll">
-        <span class="font-semibold text-sm uppercase tracking-wider" style="color:#1c2a3a;">The Process</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4" style="font-family: 'Cormorant Garamond', serif;">
-          From Inquiry to Finished Knife
-        </h2>
-        <div class="mt-4 h-1 w-16 rounded mx-auto" style="background-color:#c8a96e;"></div>
+      <div class="text-center mb-16 animate-on-scroll">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="h-px w-8 opacity-60" style="background:#c8a96e;"></div>
+          <span class="text-xs font-bold uppercase tracking-[0.2em]" style="color:#c8a96e;">The Process</span>
+          <div class="h-px w-8 opacity-60" style="background:#c8a96e;"></div>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mt-2" style="font-family:'Cormorant Garamond',serif;">From Inquiry to Finished Piece</h2>
+        <div class="mt-5 h-0.5 w-20 mx-auto opacity-30" style="background:linear-gradient(90deg,transparent,#c8a96e,transparent);"></div>
       </div>
 
-      <div class="space-y-8 stagger-children">
+      <div class="space-y-5 stagger-children">
         {steps.map(step => (
-          <div class="animate-on-scroll flex gap-6 items-start bg-white rounded-3xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-            <div class="text-4xl font-extrabold flex-shrink-0 w-16 text-right leading-none mt-1" style="color:#c8a96e; font-family: 'Cormorant Garamond', serif;">{step.number}</div>
+          <div class="animate-on-scroll group flex gap-8 items-start rounded-3xl p-8 transition-all duration-300 hover:-translate-y-0.5" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);">
+            <div class="text-5xl font-extrabold flex-shrink-0 w-16 text-right leading-none mt-1 select-none opacity-60 group-hover:opacity-100 transition-opacity" style="color:#d4500a; font-family:'Cormorant Garamond',serif;">{step.number}</div>
             <div class="flex-1">
-              <h3 class="text-xl font-bold text-gray-900 mb-2" style="font-family: 'Cormorant Garamond', serif;">{step.title}</h3>
-              <p class="text-gray-600 leading-relaxed">{step.desc}</p>
+              <h3 class="text-xl font-bold text-white mb-2" style="font-family:'Cormorant Garamond',serif;">{step.title}</h3>
+              <p class="text-gray-400 leading-relaxed text-sm">{step.desc}</p>
             </div>
           </div>
         ))}
@@ -95,57 +78,70 @@ const steps = [
     </div>
   </section>
 
-  <!-- What to Include -->
-  <section class="py-20" style="background-color:#f5f1e8;">
+  <!-- Wave: steel → mahogany -->
+  <div class="-mb-1" style="background:#0f1923;">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full block" preserveAspectRatio="none">
+      <path d="M0 0L80 15C160 30 320 60 480 65C640 70 800 50 960 42C1120 34 1280 42 1360 46L1440 50V0H0Z" fill="#1c0a04"/>
+    </svg>
+  </div>
+
+  <!-- What to Include + CTA — mahogany -->
+  <section class="py-24" style="background:#1c0a04;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+
         <div class="animate-on-scroll">
-          <span class="font-semibold text-sm uppercase tracking-wider" style="color:#1c2a3a;">Your Inquiry</span>
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
-            What to Include in Your Message
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-px w-8 opacity-60" style="background:#d4500a;"></div>
+            <span class="text-xs font-bold uppercase tracking-[0.2em]" style="color:#d4500a;">Your Inquiry</span>
+          </div>
+          <h2 class="text-4xl font-bold text-white mb-8" style="font-family:'Cormorant Garamond',serif;">
+            What to Include<br />in Your Message
           </h2>
           <div class="space-y-4">
             {[
-              "What type of knife you're looking for (chef's, hunter, collector, etc.)",
-              "Intended primary use",
-              "Approximate blade length or overall size preference",
-              "Handle material preferences (wood, bone, synthetic, etc.)",
-              "Any finish preference (satin, mirror, patina, etc.)",
+              "Type of piece — knife, sheath, belt or other leatherwork",
+              "Intended use (kitchen, field, collector's display, everyday carry, etc.)",
+              "Blade length or overall size preference (knives)",
+              "Handle material preference (wood, bone, synthetic, etc.)",
+              "Leather style and hardware preference (leatherwork)",
+              "Finish preference — satin, mirror, patina, tooled, plain",
               "Budget range if you have one",
-              "Photos or references of styles you like"
+              "Reference photos or examples of styles you like",
             ].map(item => (
               <div class="flex items-start gap-3">
-                <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background-color:#1c2a3a;">
-                  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(212,80,10,0.2); border:1px solid rgba(212,80,10,0.4);">
+                  <svg class="w-2.5 h-2.5" style="color:#d4500a;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                 </div>
-                <p class="text-gray-700">{item}</p>
+                <p class="text-gray-300 text-sm leading-relaxed">{item}</p>
               </div>
             ))}
           </div>
           <p class="mt-6 text-gray-500 text-sm italic">
-            Don't worry if you don't have all the answers — the conversation will help clarify the details.
+            Don't worry if you don't have all the details — the conversation will sort them out.
           </p>
         </div>
+
         <div class="animate-on-scroll">
-          <div class="rounded-3xl p-8 md:p-10" style="background-color:#1c2a3a;">
-            <h3 class="text-2xl font-bold text-white mb-2" style="font-family: 'Cormorant Garamond', serif;">Ready to Start?</h3>
-            <p class="text-gray-300 mb-6 leading-relaxed">Send an email to begin the conversation. I'll respond as soon as I can.</p>
-            <a
-              href={`mailto:${config.contact.email}`}
-              class="inline-flex items-center bg-amber-600 text-white px-6 py-3.5 rounded-xl font-bold hover:bg-amber-500 transition-all mb-6 w-full justify-center"
-            >
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <div class="rounded-3xl p-8 md:p-10" style="background:rgba(10,13,20,0.6); border:1px solid rgba(200,169,110,0.18);">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="h-px w-6 opacity-60" style="background:#c8a96e;"></div>
+              <span class="text-xs font-bold uppercase tracking-[0.2em]" style="color:#c8a96e;">Start Here</span>
+            </div>
+            <h3 class="text-3xl font-bold text-white mb-3" style="font-family:'Cormorant Garamond',serif;">Ready to Begin?</h3>
+            <p class="text-gray-400 mb-8 leading-relaxed" style="font-weight:300;">
+              Send an email to begin the conversation. I'll respond as soon as I can and we'll take it from there.
+            </p>
+            <a href={`mailto:${config.contact.email}`} class="inline-flex items-center justify-center gap-2 w-full text-white px-6 py-4 rounded-xl font-bold tracking-wide transition-all hover:-translate-y-0.5 mb-4" style="background:#d4500a; box-shadow:0 0 25px rgba(212,80,10,0.25);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
               {config.contact.email}
             </a>
-            <a
-              href={`${base}contact/`}
-              class="inline-flex items-center border-2 border-white/30 text-white px-6 py-3.5 rounded-xl font-semibold hover:bg-white/10 transition-all w-full justify-center"
-            >
+            <a href={`${base}contact/`} class="inline-flex items-center justify-center gap-2 w-full px-6 py-4 rounded-xl font-semibold tracking-wide transition-all hover:bg-white/5" style="border:1px solid rgba(255,255,255,0.1); color:#9ca3af;">
               Use the Contact Form
             </a>
-            <div class="mt-8 pt-6 border-t border-white/10">
-              <p class="text-gray-400 text-sm">
-                All knives are made to order. Lead time depends on current workload — usually a few weeks. Ask when you get in touch.
+            <div class="mt-8 pt-6 border-t" style="border-color:rgba(255,255,255,0.08);">
+              <p class="text-gray-500 text-xs leading-relaxed">
+                All pieces are made to order. Lead time depends on current workload — usually several weeks. Ask when you reach out.
               </p>
             </div>
           </div>
@@ -154,31 +150,39 @@ const steps = [
     </div>
   </section>
 
-  <!-- Sample Work -->
-  <section class="py-20 bg-white">
+  <!-- Wave: mahogany → near-black -->
+  <div class="-mb-1" style="background:#1c0a04;">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full block" preserveAspectRatio="none">
+      <path d="M0 0L80 15C160 30 320 60 480 65C640 70 800 50 960 42C1120 34 1280 42 1360 46L1440 50V0H0Z" fill="#0a0d14"/>
+    </svg>
+  </div>
+
+  <!-- Sample Work — near black -->
+  <section class="py-24" style="background:#0a0d14;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12 animate-on-scroll">
-        <span class="font-semibold text-sm uppercase tracking-wider" style="color:#1c2a3a;">Examples</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4" style="font-family: 'Cormorant Garamond', serif;">
-          Past Custom Orders
-        </h2>
-        <div class="mt-4 h-1 w-16 rounded mx-auto" style="background-color:#c8a96e;"></div>
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="h-px w-8 opacity-60" style="background:#d4500a;"></div>
+          <span class="text-xs font-bold uppercase tracking-[0.2em]" style="color:#d4500a;">Examples</span>
+          <div class="h-px w-8 opacity-60" style="background:#d4500a;"></div>
+        </div>
+        <h2 class="text-4xl font-bold text-white mt-2" style="font-family:'Cormorant Garamond',serif;">Past Commissions</h2>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 stagger-children">
         {[9,10,14,16].map((n) => (
-          <div class="animate-on-scroll overflow-hidden rounded-2xl aspect-square bg-gray-100">
+          <div class="animate-on-scroll overflow-hidden rounded-2xl aspect-square" style="background:#1c0a04;">
             <img
               src={`${base}assets/knife-${String(n).padStart(2,'0')}.jpg`}
-              alt="Custom commissioned knife by J.M. Amoedo"
-              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              alt="Custom commission by J.M. Amoedo"
+              class="w-full h-full object-cover hover:scale-110 transition-transform duration-700 opacity-80 hover:opacity-100"
               loading="lazy"
               onerror="this.parentElement.style.display='none';"
             />
           </div>
         ))}
       </div>
-      <div class="text-center mt-10 animate-on-scroll">
-        <a href={`${base}gallery/`} class="inline-flex items-center justify-center text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all shadow-lg hover:-translate-y-0.5" style="background-color:#1c2a3a;">
+      <div class="text-center mt-12 animate-on-scroll">
+        <a href={`${base}gallery/`} class="inline-flex items-center justify-center text-white px-9 py-4 rounded-xl font-bold tracking-wide transition-all hover:-translate-y-0.5" style="background:#d4500a; box-shadow:0 0 25px rgba(212,80,10,0.2);">
           View Full Gallery
         </a>
       </div>

@@ -11,94 +11,71 @@ const config = yaml.load(readFileSync(configPath, 'utf8'));
 const base = import.meta.env.BASE_URL;
 
 const tips = [
-  {
-    title: "Wash by hand",
-    desc: "Never put a handmade knife in the dishwasher. Hot water, detergent and machine action are hard on handles and can cause steel to rust or discolour. Wash with warm soapy water and dry immediately."
-  },
-  {
-    title: "Dry completely before storing",
-    desc: "Don't leave a wet knife sitting out or in a damp drawer. Moisture causes rust on carbon steel especially. Dry thoroughly with a cloth after washing."
-  },
-  {
-    title: "Use a proper cutting surface",
-    desc: "Wood and plastic cutting boards are fine. Glass, ceramic, stone and metal surfaces will roll or chip the edge. Don't cut on plates or countertops."
-  },
-  {
-    title: "Sharpen regularly",
-    desc: "A sharp knife is safer and easier to use than a dull one. Use a quality whetstone or have it professionally sharpened. Hone on a leather strop between sharpenings to maintain the edge."
-  },
-  {
-    title: "Oil carbon steel blades",
-    desc: "Carbon steel will develop a patina with use — this is normal and actually helps protect the blade. A light coat of food-safe oil (mineral oil or camellia oil) keeps it protected during storage."
-  },
-  {
-    title: "Store safely",
-    desc: "Use a knife block, magnetic strip or blade guard. Loose knives in a drawer bang against other utensils and damage the edge. Never store in a sheath long-term as moisture can be trapped against the blade."
-  },
-  {
-    title: "Oil wooden handles",
-    desc: "Natural wood handles benefit from occasional oiling with food-safe mineral oil or linseed oil. Rub in, let it soak, wipe off the excess. This prevents drying and cracking."
-  },
-  {
-    title: "Get it re-sharpened when needed",
-    desc: "If a knife won't take a good edge with home sharpening, it may need professional attention. Reach out — I'm happy to sharpen knives I've made."
-  }
+  { title: "Wash by hand", desc: "Never put a handmade knife in the dishwasher. Wash with warm soapy water and dry immediately. Hot water and detergent are hard on handles and will cause carbon steel to rust." },
+  { title: "Dry completely before storing", desc: "Moisture causes rust, especially on carbon steel. Dry thoroughly with a cloth after every wash before storing." },
+  { title: "Use a proper cutting surface", desc: "Wood and plastic cutting boards only. Glass, ceramic, stone and metal will roll or chip the edge. Never cut on plates or countertops." },
+  { title: "Sharpen regularly", desc: "A sharp knife is safer than a dull one. Use a quality whetstone and hone on a leather strop between sharpenings to maintain the edge." },
+  { title: "Oil carbon steel blades", desc: "Carbon steel develops a patina — this is normal and protective. A light coat of food-safe mineral or camellia oil keeps it protected in storage." },
+  { title: "Store safely", desc: "Knife block, magnetic strip or blade guard. Loose knives in drawers damage the edge. Don't store long-term in a sheath as moisture can be trapped against the blade." },
+  { title: "Oil wooden handles", desc: "Natural wood handles benefit from occasional food-safe mineral oil. Rub in, let soak, wipe off the excess. Prevents drying and cracking." },
+  { title: "Condition leather sheaths", desc: "Leather sheaths should be conditioned periodically with a quality leather conditioner or neatsfoot oil. This prevents drying, cracking and staining." },
 ];
 ---
 
-<BaseLayout title={`Knife Care | ${config.site.title}`} description="How to care for your J.M. Amoedo custom knife — washing, drying, sharpening, oiling and storage tips to keep your blade performing for a lifetime.">
+<BaseLayout title={`Knife Care | ${config.site.title}`} description="How to care for your J.M. Amoedo custom knife and leatherwork — washing, drying, sharpening, oiling and storage.">
   <Header slot="header" />
 
   <!-- Hero -->
-  <section class="relative py-24 overflow-hidden" style="background-color:#0f1923;">
+  <section class="relative py-28 overflow-hidden" style="background:#0a0d14;">
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse at 20% 50%, rgba(180,60,0,0.13) 0%, transparent 55%), radial-gradient(ellipse at 80% 30%, rgba(45,74,110,0.25) 0%, transparent 50%);"></div>
     <div class="absolute inset-0">
-      <img
-        src={`${base}assets/knife-04.jpg`}
-        alt="Caring for your custom knife"
-        class="w-full h-full object-cover opacity-20"
-      />
-      <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(15,25,35,0.92) 0%, rgba(28,42,58,0.75) 100%);"></div>
+      <img src={`${base}assets/knife-04.jpg`} alt="" class="w-full h-full object-cover opacity-15" aria-hidden="true" />
+      <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(10,13,20,0.95) 0%,rgba(28,10,4,0.65) 100%);"></div>
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="font-semibold text-sm uppercase tracking-wider mb-4 block" style="color:#c8a96e;">Maintenance Guide</span>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
-        Knife <span style="background: linear-gradient(90deg, #c8a96e, #e8c98e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Care</span>
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <div class="h-px w-10 opacity-60" style="background:#c8a96e;"></div>
+        <span class="text-xs font-bold uppercase tracking-[0.25em]" style="color:#c8a96e;">Maintenance Guide</span>
+        <div class="h-px w-10 opacity-60" style="background:#c8a96e;"></div>
+      </div>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-2 mb-6" style="font-family:'Cormorant Garamond',serif; letter-spacing:-0.02em;">
+        Knife & Leather <span style="background:linear-gradient(90deg,#c8a96e,#e8c98e,#c8a96e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Care</span>
       </h1>
-      <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-        A handmade knife will last a lifetime with basic care. Here's how to look after it.
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed" style="font-weight:300;">
+        A handmade piece will last a lifetime with basic care. Here's how to look after it.
       </p>
     </div>
   </section>
 
-  <!-- Wave Divider -->
-  <div class="-mb-1" style="background-color:#0f1923;">
-    <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none">
-      <path d="M0 60L60 52C120 44 240 28 360 24C480 20 600 28 720 32C840 36 960 36 1080 32C1200 28 1320 20 1380 16L1440 12V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="white"/>
+  <!-- Wave: hero → steel -->
+  <div class="-mb-1" style="background:#0a0d14;">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full block" preserveAspectRatio="none">
+      <path d="M0 80L80 65C160 50 320 20 480 15C640 10 800 30 960 38C1120 46 1280 38 1360 34L1440 30V80H0Z" fill="#0f1923"/>
     </svg>
   </div>
 
-  <!-- Care Tips -->
-  <section class="py-20 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14 animate-on-scroll">
-        <span class="font-semibold text-sm uppercase tracking-wider" style="color:#1c2a3a;">Care & Maintenance</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4" style="font-family: 'Cormorant Garamond', serif;">
-          Keep Your Blade at Its Best
-        </h2>
-        <div class="mt-4 h-1 w-16 rounded mx-auto" style="background-color:#c8a96e;"></div>
+  <!-- Care Tips — steel -->
+  <section class="py-24" style="background:#0f1923;">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 animate-on-scroll">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="h-px w-8 opacity-60" style="background:#d4500a;"></div>
+          <span class="text-xs font-bold uppercase tracking-[0.2em]" style="color:#d4500a;">Care & Maintenance</span>
+          <div class="h-px w-8 opacity-60" style="background:#d4500a;"></div>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mt-2" style="font-family:'Cormorant Garamond',serif;">Keep Your Piece at Its Best</h2>
+        <div class="mt-5 h-0.5 w-20 mx-auto opacity-30" style="background:linear-gradient(90deg,transparent,#c8a96e,transparent);"></div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 stagger-children">
         {tips.map(tip => (
-          <div class="animate-on-scroll bg-white rounded-3xl p-6 shadow-sm border border-gray-100 card-hover">
-            <div class="flex items-start gap-4">
-              <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background-color:#fef3c7;">
-                <svg class="w-4 h-4" style="color:#c8a96e;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              </div>
-              <div>
-                <h3 class="font-bold text-gray-900 mb-2">{tip.title}</h3>
-                <p class="text-gray-600 text-sm leading-relaxed">{tip.desc}</p>
-              </div>
+          <div class="animate-on-scroll group flex gap-5 p-7 rounded-3xl transition-all duration-300 hover:-translate-y-0.5" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(200,169,110,0.1); border:1px solid rgba(200,169,110,0.2);">
+              <svg class="w-4 h-4" style="color:#c8a96e;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-white mb-2 text-base">{tip.title}</h3>
+              <p class="text-gray-400 text-sm leading-relaxed">{tip.desc}</p>
             </div>
           </div>
         ))}
@@ -106,16 +83,24 @@ const tips = [
     </div>
   </section>
 
-  <!-- Questions CTA -->
-  <section class="py-20" style="background-color:#1c2a3a;">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-white mb-4" style="font-family: 'Cormorant Garamond', serif;">
-        Questions About Your Knife?
+  <!-- Wave: steel → near-black -->
+  <div class="-mb-1" style="background:#0f1923;">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full block" preserveAspectRatio="none">
+      <path d="M0 0L80 15C160 30 320 60 480 65C640 70 800 50 960 42C1120 34 1280 42 1360 46L1440 50V0H0Z" fill="#0a0d14"/>
+    </svg>
+  </div>
+
+  <!-- CTA — near-black with fire -->
+  <section class="relative py-20 overflow-hidden" style="background:#0a0d14;">
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse at 50% 100%, rgba(212,80,10,0.14) 0%, transparent 60%);"></div>
+    <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" style="font-family:'Cormorant Garamond',serif;">
+        Questions About Your Piece?
       </h2>
-      <p class="text-gray-300 mb-8 text-lg">
-        Get in touch — I'm happy to advise on care, sharpening or any issues with a knife I've made.
+      <p class="text-gray-400 mb-8 text-lg" style="font-weight:300;">
+        Get in touch — I'm happy to advise on care, sharpening or any issues.
       </p>
-      <a href={`${base}contact/`} class="inline-flex items-center justify-center bg-amber-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-amber-500 transition-all shadow-lg">
+      <a href={`${base}contact/`} class="inline-flex items-center justify-center text-white px-9 py-4 rounded-xl font-bold tracking-wide transition-all hover:-translate-y-0.5" style="background:#d4500a; box-shadow:0 0 30px rgba(212,80,10,0.2);">
         Contact Me
       </a>
     </div>

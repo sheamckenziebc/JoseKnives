@@ -93,7 +93,7 @@ const currentPath = Astro.url.pathname;
               aria-current={currentPath.includes('/gallery') ? 'page' : undefined}
               style={currentPath.includes('/gallery') ? 'color:#1c2a3a;' : ''}
             >
-              Gallery
+              Product Gallery
             </a>
           </li>
           <li role="none">
@@ -156,7 +156,7 @@ const currentPath = Astro.url.pathname;
       <div class="px-2 pt-2 pb-4 space-y-1 border-t border-gray-100">
         <a href={base} class={`block px-4 py-3 text-base font-medium rounded-lg transition-all ${currentPath === base || currentPath === base.slice(0, -1) ? 'bg-slate-100' : 'text-gray-700 hover:bg-gray-50'}`} style={currentPath === base || currentPath === base.slice(0, -1) ? 'color:#1c2a3a;' : ''} aria-current={currentPath === base || currentPath === base.slice(0, -1) ? 'page' : undefined}>Home</a>
         <a href={`${base}about/`} class={`block px-4 py-3 text-base font-medium rounded-lg transition-all ${currentPath.endsWith('/about') || currentPath.endsWith('/about/') ? 'bg-slate-100' : 'text-gray-700 hover:bg-gray-50'}`} style={currentPath.endsWith('/about') || currentPath.endsWith('/about/') ? 'color:#1c2a3a;' : ''} aria-current={currentPath.endsWith('/about') || currentPath.endsWith('/about/') ? 'page' : undefined}>The Maker</a>
-        <a href={`${base}gallery/`} class={`block px-4 py-3 text-base font-medium rounded-lg transition-all ${currentPath.includes('/gallery') ? 'bg-slate-100' : 'text-gray-700 hover:bg-gray-50'}`} style={currentPath.includes('/gallery') ? 'color:#1c2a3a;' : ''} aria-current={currentPath.includes('/gallery') ? 'page' : undefined}>Gallery</a>
+        <a href={`${base}gallery/`} class={`block px-4 py-3 text-base font-medium rounded-lg transition-all ${currentPath.includes('/gallery') ? 'bg-slate-100' : 'text-gray-700 hover:bg-gray-50'}`} style={currentPath.includes('/gallery') ? 'color:#1c2a3a;' : ''} aria-current={currentPath.includes('/gallery') ? 'page' : undefined}>Product Gallery</a>
         <a href={`${base}artwork/`} class={`block px-4 py-3 text-base font-medium rounded-lg transition-all ${currentPath.includes('/artwork') ? 'bg-slate-100' : 'text-gray-700 hover:bg-gray-50'}`} style={currentPath.includes('/artwork') ? 'color:#1c2a3a;' : ''} aria-current={currentPath.includes('/artwork') ? 'page' : undefined}>Custom Orders</a>
         <a href={`${base}contact/`} class={`block px-4 py-3 text-base font-medium rounded-lg transition-all ${currentPath.endsWith('/contact') || currentPath.endsWith('/contact/') ? 'bg-slate-100' : 'text-gray-700 hover:bg-gray-50'}`} style={currentPath.endsWith('/contact') || currentPath.endsWith('/contact/') ? 'color:#1c2a3a;' : ''} aria-current={currentPath.endsWith('/contact') || currentPath.endsWith('/contact/') ? 'page' : undefined}>Contact</a>
         <a href={`${base}contact/`} class="block mx-2 mt-3 text-center bg-amber-600 text-white px-4 py-3 rounded-lg font-bold hover:bg-amber-500 transition-colors">Commission a Knife</a>

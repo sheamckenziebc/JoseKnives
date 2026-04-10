@@ -14,233 +14,251 @@ const base = import.meta.env.BASE_URL;
 <BaseLayout title={config.site.title} description={config.site.description}>
   <Header slot="header" />
 
-  <!-- Hero Section -->
-  <section class="relative py-28 md:py-40 overflow-hidden" style="background-color:#0f1923;">
-    <!-- Background knife image with dark overlay -->
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO — forge-fire glow, near-black with mahogany heat
+  ════════════════════════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex items-center py-28 md:py-36 overflow-hidden" style="background:#0a0d14;">
+    <!-- Layered atmospheric gradients -->
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 15% 60%, rgba(180,60,0,0.18) 0%, transparent 55%), radial-gradient(ellipse at 85% 20%, rgba(45,74,110,0.35) 0%, transparent 50%);"></div>
+    <!-- Background knife image -->
     <div class="absolute inset-0">
-      <img
-        src={`${base}assets/knife-01.jpg`}
-        alt="Custom handforged knife by J.M. Amoedo"
-        class="w-full h-full object-cover opacity-30"
-      />
-      <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(15,25,35,0.92) 0%, rgba(28,42,58,0.75) 100%);"></div>
+      <img src={`${base}assets/knife-01.jpg`} alt="" class="w-full h-full object-cover opacity-20" aria-hidden="true" />
+      <div class="absolute inset-0" style="background: linear-gradient(110deg, rgba(10,13,20,0.95) 40%, rgba(28,10,4,0.7) 100%);"></div>
     </div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       <div class="max-w-3xl">
-        <span class="inline-block text-sm font-semibold uppercase tracking-widest mb-5" style="color:#c8a96e;">Handcrafted Custom Knives</span>
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight" style="font-family: 'Cormorant Garamond', serif;">
-          Forged by Hand.<br />
-          <span style="background: linear-gradient(90deg, #c8a96e, #e8c98e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Made to Last.</span>
+        <!-- Eyebrow with fire line -->
+        <div class="flex items-center gap-3 mb-6">
+          <div class="h-px w-10 opacity-70" style="background:#d4500a;"></div>
+          <span class="text-xs font-bold uppercase tracking-[0.25em]" style="color:#d4500a;">Handcrafted in Every Detail</span>
+        </div>
+
+        <h1 class="text-5xl md:text-6xl lg:text-8xl font-bold text-white mb-8 leading-[0.95]" style="font-family: 'Cormorant Garamond', serif; letter-spacing:-0.02em;">
+          Forged by<br />
+          <span style="background: linear-gradient(90deg, #c8a96e 0%, #e8c98e 50%, #c8a96e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Hand.</span>
+          <br />Made to Last.
         </h1>
-        <p class="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl mb-10">
-          Each blade is an original — shaped from raw steel, finished by hand, and built to perform for a lifetime. Custom orders welcome.
+
+        <p class="text-xl md:text-2xl text-gray-400 leading-relaxed max-w-xl mb-12" style="font-weight:300;">
+          Custom knives and fine leatherwork. Every piece is an original — built for beauty, balance, and a lifetime of use.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a href={`${base}gallery/`} class="inline-flex items-center justify-center bg-amber-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-amber-500 transition-all shadow-lg hover:-translate-y-0.5">
+
+        <div class="flex flex-wrap gap-4">
+          <a href={`${base}gallery/`} class="inline-flex items-center justify-center text-white px-9 py-4 rounded-xl font-bold text-base tracking-wide transition-all shadow-lg hover:shadow-orange-900/30 hover:-translate-y-0.5" style="background:#d4500a;">
             View the Gallery
             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
-          <a href={`${base}contact/`} class="inline-flex items-center justify-center border-2 border-white/30 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/10 transition-all backdrop-blur-sm">
-            Commission a Knife
+          <a href={`${base}contact/`} class="inline-flex items-center justify-center px-9 py-4 rounded-xl font-semibold text-base tracking-wide transition-all" style="border:1px solid rgba(200,169,110,0.4); color:#c8a96e; backdrop-filter:blur(4px);">
+            Commission a Piece
           </a>
         </div>
 
-        <!-- Stats -->
-        <div class="mt-14 flex flex-wrap gap-6">
-          <div class="backdrop-blur-sm rounded-2xl p-5 min-w-[120px]" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(200,169,110,0.2);">
-            <div class="text-3xl font-extrabold" style="color:#c8a96e;">100%</div>
-            <div class="text-xs text-gray-400 mt-1 uppercase tracking-wide">Hand Forged</div>
-          </div>
-          <div class="backdrop-blur-sm rounded-2xl p-5 min-w-[120px]" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(200,169,110,0.2);">
-            <div class="text-3xl font-extrabold" style="color:#c8a96e;">One of a Kind</div>
-            <div class="text-xs text-gray-400 mt-1 uppercase tracking-wide">Every Blade</div>
-          </div>
-          <div class="backdrop-blur-sm rounded-2xl p-5 min-w-[120px]" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(200,169,110,0.2);">
-            <div class="text-3xl font-extrabold" style="color:#c8a96e;">Custom</div>
-            <div class="text-xs text-gray-400 mt-1 uppercase tracking-wide">Orders Welcome</div>
-          </div>
+        <!-- Stats glass cards -->
+        <div class="mt-16 flex flex-wrap gap-4">
+          {[
+            { value: "Hand", sub: "Forged Steel" },
+            { value: "One of a", sub: "Kind — Always" },
+            { value: "Fine", sub: "Leatherwork" },
+          ].map(stat => (
+            <div class="px-6 py-4 rounded-2xl" style="background:rgba(255,255,255,0.04); border:1px solid rgba(200,169,110,0.15);">
+              <div class="text-lg font-extrabold" style="color:#c8a96e; font-family:'Cormorant Garamond',serif;">{stat.value}</div>
+              <div class="text-xs text-gray-500 mt-0.5 uppercase tracking-widest">{stat.sub}</div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
+
+    <!-- Scroll cue -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+      <div class="w-px h-12 animate-pulse" style="background:linear-gradient(to bottom, #c8a96e, transparent);"></div>
+    </div>
   </section>
 
-  <!-- Wave Divider -->
-  <div class="-mb-1" style="background-color:#0f1923;">
-    <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none">
-      <path d="M0 60L60 52C120 44 240 28 360 24C480 20 600 28 720 32C840 36 960 36 1080 32C1200 28 1320 20 1380 16L1440 12V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="white"/>
+  <!-- Wave: hero → mahogany -->
+  <div class="-mb-1" style="background:#0a0d14;">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full block" preserveAspectRatio="none">
+      <path d="M0 80L80 65C160 50 320 20 480 15C640 10 800 30 960 38C1120 46 1280 38 1360 34L1440 30V80H0Z" fill="#1c0a04"/>
     </svg>
   </div>
 
-  <!-- About the Maker -->
-  <section class="py-20 bg-white">
+  <!-- ═══════════════════════════════════════════════════════════
+       THE CRAFT — mahogany section
+  ════════════════════════════════════════════════════════════ -->
+  <section class="py-24" style="background:#1c0a04;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div class="animate-on-scroll">
-          <span class="font-semibold text-sm uppercase tracking-wider" style="color:#1c2a3a;">The Craft</span>
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
-            Every Knife Begins at the Forge
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-px w-8 opacity-70" style="background:#c8a96e;"></div>
+            <span class="text-xs font-bold uppercase tracking-[0.2em]" style="color:#c8a96e;">The Craft</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight" style="font-family: 'Cormorant Garamond', serif;">
+            Every Piece Begins<br />at the Forge
           </h2>
-          <p class="text-lg text-gray-600 mb-5 leading-relaxed">
-            J.M. Amoedo custom knives are built from the ground up — raw steel shaped through heat and hammer, ground to geometry, fitted with handles chosen for character and durability.
+          <p class="text-gray-400 text-lg leading-relaxed mb-6" style="font-weight:300;">
+            J.M. Amoedo custom work is built from raw materials — steel drawn under heat and hammer, leather cut and stitched by hand. No two pieces are the same.
           </p>
-          <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-            No two blades are alike. Whether you need a chef's workhorse, a field knife, or a collector's piece, each order starts with a conversation about how the knife will be used.
+          <p class="text-gray-400 text-lg leading-relaxed mb-10" style="font-weight:300;">
+            Whether you need a kitchen blade, a field knife, a collector's piece, or fine leatherwork — every order starts with a conversation about how it will be used and what it needs to be.
           </p>
-          <a href={`${base}about/`} class="inline-flex items-center font-semibold text-lg hover:gap-3 transition-all gap-2" style="color:#1c2a3a;">
+          <a href={`${base}about/`} class="inline-flex items-center gap-2 font-semibold text-base transition-all hover:gap-4" style="color:#c8a96e;">
             Meet the Maker
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </a>
         </div>
+
         <div class="relative animate-on-scroll">
+          <div class="absolute -inset-4 rounded-3xl opacity-30 blur-2xl" style="background:radial-gradient(ellipse, rgba(212,80,10,0.4), transparent 70%);"></div>
           <img
             src={`${base}assets/knife-02.jpg`}
             alt="Handcrafted knife by J.M. Amoedo"
-            class="rounded-3xl shadow-2xl w-full h-96 object-cover"
+            class="relative rounded-3xl shadow-2xl w-full h-[480px] object-cover"
             loading="lazy"
-            onerror="this.src=''; this.style.display='none';"
+            onerror="this.style.display='none';"
           />
-          <div class="absolute -bottom-4 -right-4 w-32 h-32 rounded-3xl opacity-20" style="background-color:#c8a96e;"></div>
+          <!-- Copper corner accent -->
+          <div class="absolute -bottom-3 -right-3 w-20 h-20 rounded-2xl opacity-30" style="background:linear-gradient(135deg,#c8a96e,transparent);"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- What I Make -->
-  <section class="py-20" style="background-color:#f5f1e8;">
+  <!-- Wave: mahogany → steel -->
+  <div class="-mb-1" style="background:#1c0a04;">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full block" preserveAspectRatio="none">
+      <path d="M0 0L80 15C160 30 320 60 480 65C640 70 800 50 960 42C1120 34 1280 42 1360 46L1440 50V0H0Z" fill="#0f1923"/>
+    </svg>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       COLLECTION CATEGORIES — steel section
+  ════════════════════════════════════════════════════════════ -->
+  <section class="py-24" style="background:#0f1923;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14 animate-on-scroll">
-        <span class="font-semibold text-sm uppercase tracking-wider" style="color:#1c2a3a;">The Collection</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4" style="font-family: 'Cormorant Garamond', serif;">
-          Browse by Type
-        </h2>
-        <div class="mt-4 h-1 w-16 rounded mx-auto" style="background-color:#c8a96e;"></div>
+      <div class="text-center mb-16 animate-on-scroll">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="h-px w-8 opacity-60" style="background:#d4500a;"></div>
+          <span class="text-xs font-bold uppercase tracking-[0.2em]" style="color:#d4500a;">The Collection</span>
+          <div class="h-px w-8 opacity-60" style="background:#d4500a;"></div>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mt-2" style="font-family: 'Cormorant Garamond', serif;">Browse by Type</h2>
+        <div class="mt-5 h-0.5 w-20 mx-auto opacity-40" style="background:linear-gradient(90deg, transparent, #c8a96e, transparent);"></div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-children">
-        <!-- Kitchen & Chef -->
-        <a href={`${base}gallery/`} class="animate-on-scroll group bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center card-hover">
-          <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 card-icon" style="background-color:#e8f0f8;">
-            <svg class="w-8 h-8" style="color:#1c2a3a;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1M3 12h1m16 0h1M5.6 5.6l.7.7m11.4-.7l-.7.7M5.6 18.4l.7-.7m11.4.7l-.7-.7"/></svg>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3" style="font-family: 'Cormorant Garamond', serif;">Kitchen & Chef's Knives</h3>
-          <p class="text-gray-600 leading-relaxed text-sm">Culinary blades built for balance and edge retention — chef's knives, santokus, cleavers and more.</p>
-          <span class="inline-flex items-center font-semibold text-sm mt-4 group-hover:gap-2 gap-1 transition-all" style="color:#c8a96e;">
-            View Gallery
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-          </span>
-        </a>
-
-        <!-- Hunting & Field -->
-        <a href={`${base}gallery/`} class="animate-on-scroll group bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center card-hover">
-          <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 card-icon" style="background-color:#e8f0f8;">
-            <svg class="w-8 h-8" style="color:#1c2a3a;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 7l9-4 9 4v10l-9 4-9-4V7z"/></svg>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3" style="font-family: 'Cormorant Garamond', serif;">Hunting & Field Knives</h3>
-          <p class="text-gray-600 leading-relaxed text-sm">Fixed-blade field knives designed for hard use — skinning, camp work and outdoor carry.</p>
-          <span class="inline-flex items-center font-semibold text-sm mt-4 group-hover:gap-2 gap-1 transition-all" style="color:#c8a96e;">
-            View Gallery
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-          </span>
-        </a>
-
-        <!-- Collector's Pieces -->
-        <a href={`${base}gallery/`} class="animate-on-scroll group bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center card-hover">
-          <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 card-icon" style="background-color:#e8f0f8;">
-            <svg class="w-8 h-8" style="color:#1c2a3a;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3l14 9-14 9V3z"/></svg>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-3" style="font-family: 'Cormorant Garamond', serif;">Collector's Pieces</h3>
-          <p class="text-gray-600 leading-relaxed text-sm">Art knives and presentation pieces for collectors — exceptional materials, intricate handle work, display-ready.</p>
-          <span class="inline-flex items-center font-semibold text-sm mt-4 group-hover:gap-2 gap-1 transition-all" style="color:#c8a96e;">
-            View Gallery
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-          </span>
-        </a>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
+        {[
+          { href: `${base}gallery/`, icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1M3 12h1m16 0h1M5.6 5.6l.7.7m11.4-.7l-.7.7M5.6 18.4l.7-.7m11.4.7l-.7-.7"/>`, title: "Kitchen & Chef's", desc: "Culinary blades for the serious cook — chef's knives, santokus, cleavers and more." },
+          { href: `${base}gallery/`, icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 7l9-4 9 4v10l-9 4-9-4V7z"/>`, title: "Hunting & Field", desc: "Fixed-blade field knives built for hard use in demanding conditions." },
+          { href: `${base}gallery/`, icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3l14 9-14 9V3z"/>`, title: "Collector's Pieces", desc: "Art knives and presentation blades — exceptional materials, display-ready finish." },
+          { href: `${base}gallery/`, icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>`, title: "Fine Leatherwork", desc: "Handstitched sheaths, belts and leather goods crafted with the same care as the blades." },
+        ].map(card => (
+          <a href={card.href} class="animate-on-scroll group relative overflow-hidden rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);">
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="background:radial-gradient(ellipse at 50% 0%, rgba(200,169,110,0.08), transparent 70%);"></div>
+            <div class="relative">
+              <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-colors duration-300 group-hover:opacity-90" style="background:rgba(212,80,10,0.15); border:1px solid rgba(212,80,10,0.2);">
+                <svg class="w-6 h-6" style="color:#d4500a;" fill="none" stroke="currentColor" viewBox="0 0 24 24" set:html={card.icon} />
+              </div>
+              <h3 class="text-xl font-bold text-white mb-3" style="font-family:'Cormorant Garamond',serif;">{card.title}</h3>
+              <p class="text-gray-400 text-sm leading-relaxed mb-5">{card.desc}</p>
+              <span class="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-widest transition-all group-hover:gap-3" style="color:#c8a96e;">
+                View Gallery <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </a>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Wave Divider into dark -->
-  <div class="-mb-1" style="background-color:#f5f1e8;">
-    <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none">
-      <path d="M0 0L60 8C120 16 240 32 360 36C480 40 600 32 720 28C840 24 960 24 1080 28C1200 32 1320 40 1380 44L1440 48V0H1380C1320 0 1200 0 1080 0C960 0 840 0 720 0C600 0 480 0 360 0C240 0 120 0 60 0H0Z" fill="#0f1923"/>
+  <!-- Wave: steel → mahogany -->
+  <div class="-mb-1" style="background:#0f1923;">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full block" preserveAspectRatio="none">
+      <path d="M0 80L80 65C160 50 320 20 480 15C640 10 800 30 960 38C1120 46 1280 38 1360 34L1440 30V80H0Z" fill="#1c0a04"/>
     </svg>
   </div>
 
-  <!-- Featured Work (image grid) -->
-  <section class="py-20" style="background-color:#0f1923;">
+  <!-- ═══════════════════════════════════════════════════════════
+       RECENT WORK IMAGE GRID — mahogany
+  ════════════════════════════════════════════════════════════ -->
+  <section class="py-24" style="background:#1c0a04;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14 animate-on-scroll">
-        <span class="font-semibold text-sm uppercase tracking-widest" style="color:#c8a96e;">Recent Work</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-4" style="font-family: 'Cormorant Garamond', serif;">
-          From the Workshop
-        </h2>
-        <div class="mt-4 h-1 w-16 rounded mx-auto" style="background-color:#c8a96e;"></div>
+      <div class="text-center mb-16 animate-on-scroll">
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="h-px w-8 opacity-60" style="background:#c8a96e;"></div>
+          <span class="text-xs font-bold uppercase tracking-[0.2em]" style="color:#c8a96e;">Recent Work</span>
+          <div class="h-px w-8 opacity-60" style="background:#c8a96e;"></div>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mt-2" style="font-family: 'Cormorant Garamond', serif;">From the Workshop</h2>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 stagger-children">
-        {[3,4,5,6,7,8,9,10].map((n) => (
-          <div class="animate-on-scroll group overflow-hidden rounded-2xl aspect-square" style="background-color:#1c2a3a;">
-            <img
-              src={`${base}assets/knife-${String(n).padStart(2,'0')}.jpg`}
-              alt={`Custom knife by J.M. Amoedo`}
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-              onerror="this.parentElement.style.display='none';"
-            />
+      <!-- Asymmetric masonry-style grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 auto-rows-[180px] stagger-children">
+        <div class="animate-on-scroll group col-span-1 row-span-2 overflow-hidden rounded-3xl cursor-pointer" style="background:#1c2a3a;">
+          <img src={`${base}assets/knife-03.jpg`} alt="Custom knife" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90 group-hover:opacity-100" loading="lazy" onerror="this.parentElement.style.display='none';" />
+        </div>
+        {[4,5,6,7,8,9,10,11].map((n) => (
+          <div class="animate-on-scroll group overflow-hidden rounded-2xl cursor-pointer" style="background:#1c2a3a;">
+            <img src={`${base}assets/knife-${String(n).padStart(2,'0')}.jpg`} alt="Custom work" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100" loading="lazy" onerror="this.parentElement.style.display='none';" />
           </div>
         ))}
       </div>
 
       <div class="text-center mt-12 animate-on-scroll">
-        <a href={`${base}gallery/`} class="inline-flex items-center justify-center bg-amber-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-amber-500 transition-all shadow-lg hover:-translate-y-0.5">
+        <a href={`${base}gallery/`} class="inline-flex items-center justify-center gap-3 text-white px-10 py-4 rounded-xl font-bold text-base tracking-wide transition-all hover:-translate-y-0.5 hover:shadow-lg" style="background:#d4500a; box-shadow:0 0 30px rgba(212,80,10,0.25);">
           View Full Gallery
-          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Wave Divider back to light -->
-  <div class="-mb-1" style="background-color:#0f1923;">
-    <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none">
-      <path d="M0 60L60 52C120 44 240 28 360 24C480 20 600 28 720 32C840 36 960 36 1080 32C1200 28 1320 20 1380 16L1440 12V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="white"/>
+  <!-- Wave: mahogany → dark steel -->
+  <div class="-mb-1" style="background:#1c0a04;">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full block" preserveAspectRatio="none">
+      <path d="M0 0L80 15C160 30 320 60 480 65C640 70 800 50 960 42C1120 34 1280 42 1360 46L1440 50V0H0Z" fill="#0f1923"/>
     </svg>
   </div>
 
-  <!-- Why Custom -->
-  <section class="py-20 bg-white">
+  <!-- ═══════════════════════════════════════════════════════════
+       WHY CUSTOM — steel section
+  ════════════════════════════════════════════════════════════ -->
+  <section class="py-24" style="background:#0f1923;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div class="relative animate-on-scroll order-2 lg:order-1">
+          <div class="absolute -inset-4 rounded-3xl opacity-20 blur-2xl" style="background:radial-gradient(ellipse, rgba(45,74,110,0.6), transparent 70%);"></div>
           <img
             src={`${base}assets/knife-11.jpg`}
             alt="Detail of custom knife handle and blade"
-            class="rounded-3xl shadow-2xl w-full h-96 object-cover"
+            class="relative rounded-3xl shadow-2xl w-full h-[480px] object-cover"
             loading="lazy"
-            onerror="this.src=''; this.style.display='none';"
+            onerror="this.style.display='none';"
           />
-          <div class="absolute -top-4 -left-4 w-32 h-32 rounded-3xl opacity-15" style="background-color:#1c2a3a;"></div>
         </div>
         <div class="animate-on-scroll order-1 lg:order-2">
-          <span class="font-semibold text-sm uppercase tracking-wider" style="color:#1c2a3a;">Why Custom?</span>
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
-            A Knife Built Around You
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-px w-8 opacity-60" style="background:#d4500a;"></div>
+            <span class="text-xs font-bold uppercase tracking-[0.2em]" style="color:#d4500a;">Why Custom?</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-10 leading-tight" style="font-family: 'Cormorant Garamond', serif;">
+            A Piece Built<br />Around You
           </h2>
-          <div class="space-y-5">
+          <div class="space-y-6">
             {[
-              { title: "Your dimensions", desc: "Handle length, blade geometry and balance tuned to the way you work." },
-              { title: "Your materials", desc: "Choose your steel, handle material and finish — from practical to heirloom." },
-              { title: "Your purpose", desc: "Whether it's a kitchen workhorse, a hunting companion or a gift, the design starts there." },
-              { title: "Your timeline", desc: "Each knife is made to order. Contact me to discuss what you have in mind." }
+              { title: "Your dimensions", desc: "Handle length, blade geometry and weight tuned to how you work and what you carry." },
+              { title: "Your materials", desc: "Steel grade, handle material, guard and finish — from working grade to heirloom quality." },
+              { title: "Your purpose", desc: "Kitchen workhorse, hunting companion, collector's display piece, or a handstitched leather piece that lasts decades." },
+              { title: "Your timeline", desc: "Every piece is made to order. Get in touch to discuss your project and current lead times." },
             ].map(item => (
               <div class="flex items-start gap-4">
-                <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-1" style="background-color:#fef3c7;">
-                  <svg class="w-4 h-4" style="color:#c8a96e;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(200,169,110,0.12); border:1px solid rgba(200,169,110,0.25);">
+                  <svg class="w-3.5 h-3.5" style="color:#c8a96e;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                 </div>
                 <div>
-                  <p class="font-semibold text-gray-900">{item.title}</p>
-                  <p class="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                  <p class="font-semibold text-white mb-1">{item.title}</p>
+                  <p class="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -250,24 +268,36 @@ const base = import.meta.env.BASE_URL;
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="relative py-24 overflow-hidden" style="background-color:#1c2a3a;">
-    <div class="absolute inset-0 opacity-5">
-      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.4&quot; fill-rule=&quot;evenodd&quot;%3E%3Ccircle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;3&quot;/%3E%3C/g%3E%3C/svg%3E');"></div>
-    </div>
+  <!-- Wave: steel → near-black -->
+  <div class="-mb-1" style="background:#0f1923;">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full block" preserveAspectRatio="none">
+      <path d="M0 80L80 65C160 50 320 20 480 15C640 10 800 30 960 38C1120 46 1280 38 1360 34L1440 30V80H0Z" fill="#0a0d14"/>
+    </svg>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FINAL CTA — deep near-black with fire
+  ════════════════════════════════════════════════════════════ -->
+  <section class="relative py-28 overflow-hidden" style="background:#0a0d14;">
+    <!-- Fire-glow from below -->
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse at 50% 100%, rgba(212,80,10,0.18) 0%, transparent 60%);"></div>
     <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="font-semibold text-sm uppercase tracking-widest" style="color:#c8a96e;">Ready to Start?</span>
-      <h2 class="text-3xl md:text-5xl font-bold text-white mt-3 mb-6" style="font-family: 'Cormorant Garamond', serif;">
-        Commission Your Custom Knife
+      <div class="flex items-center justify-center gap-3 mb-6">
+        <div class="h-px w-12 opacity-60" style="background:#d4500a;"></div>
+        <span class="text-xs font-bold uppercase tracking-[0.2em]" style="color:#d4500a;">Ready to Begin?</span>
+        <div class="h-px w-12 opacity-60" style="background:#d4500a;"></div>
+      </div>
+      <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight" style="font-family: 'Cormorant Garamond', serif;">
+        Commission Something<br />Extraordinary
       </h2>
-      <p class="text-xl text-gray-300 mb-10 leading-relaxed">
-        Get in touch to discuss your project. Every knife starts with a conversation.
+      <p class="text-xl text-gray-400 mb-12 max-w-xl mx-auto" style="font-weight:300;">
+        Every knife, every leather piece — it starts with a conversation. Get in touch to discuss what you have in mind.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href={`${base}contact/`} class="inline-flex items-center justify-center bg-amber-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-amber-500 transition-all shadow-lg hover:-translate-y-0.5">
+        <a href={`${base}contact/`} class="inline-flex items-center justify-center text-white px-10 py-5 rounded-xl font-bold text-lg tracking-wide transition-all hover:-translate-y-0.5 hover:shadow-2xl" style="background:#d4500a; box-shadow:0 0 40px rgba(212,80,10,0.3);">
           Start a Commission
         </a>
-        <a href={`${base}artwork/`} class="inline-flex items-center justify-center border-2 border-white/30 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/10 transition-all">
+        <a href={`${base}artwork/`} class="inline-flex items-center justify-center px-10 py-5 rounded-xl font-semibold text-lg tracking-wide transition-all hover:bg-white/5" style="border:1px solid rgba(200,169,110,0.35); color:#c8a96e;">
           How It Works
         </a>
       </div>

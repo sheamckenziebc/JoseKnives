@@ -10,76 +10,80 @@ const configPath = join(process.cwd(), 'config.yaml');
 const config = yaml.load(readFileSync(configPath, 'utf8'));
 const base = import.meta.env.BASE_URL;
 
-const knives = [
-  { file: "knife-01.jpg", title: "Chef's Knife", category: "kitchen", desc: "Full-tang chef's knife with hardwood handle" },
-  { file: "knife-02.jpg", title: "Custom Kitchen Knife", category: "kitchen", desc: "Hand-ground kitchen blade, stabilized burl handle" },
-  { file: "knife-03.jpg", title: "Hunter's Drop Point", category: "hunting", desc: "Drop-point hunter with natural bone handle" },
-  { file: "knife-04.jpg", title: "Field Knife", category: "hunting", desc: "Fixed blade field knife, brass guard" },
+const items = [
+  { file: "knife-01.jpg", title: "Chef's Knife", category: "kitchen", desc: "Full-tang chef's knife, hardwood handle" },
+  { file: "knife-02.jpg", title: "Custom Kitchen Knife", category: "kitchen", desc: "Hand-ground blade, stabilized burl handle" },
+  { file: "knife-03.jpg", title: "Hunter's Drop Point", category: "hunting", desc: "Drop-point hunter, natural bone handle" },
+  { file: "knife-04.jpg", title: "Field Knife", category: "hunting", desc: "Fixed blade, brass guard and pommel" },
   { file: "knife-05.jpg", title: "Skinning Knife", category: "hunting", desc: "Curved skinner for field dressing" },
-  { file: "knife-06.jpg", title: "Art Knife", category: "collector", desc: "Collector's piece with decorative handle work" },
-  { file: "knife-07.jpg", title: "Presentation Knife", category: "collector", desc: "Display-grade blade with premium materials" },
-  { file: "knife-08.jpg", title: "Custom Bowie", category: "collector", desc: "Classic bowie style, collector-grade finish" },
-  { file: "knife-09.jpg", title: "Custom Commission", category: "custom", desc: "Client commission — custom specs and materials" },
-  { file: "knife-10.jpg", title: "Santoku Style", category: "kitchen", desc: "Japanese-influenced kitchen knife" },
-  { file: "knife-11.jpg", title: "Camp Knife", category: "hunting", desc: "Heavy-duty camp knife, full tang construction" },
-  { file: "knife-12.jpg", title: "Fillet Knife", category: "kitchen", desc: "Flexible fillet knife with long narrow blade" },
+  { file: "knife-06.jpg", title: "Art Knife", category: "collector", desc: "Collector's piece, decorative handle inlay" },
+  { file: "knife-07.jpg", title: "Presentation Knife", category: "collector", desc: "Display-grade blade, premium exotic materials" },
+  { file: "knife-08.jpg", title: "Custom Bowie", category: "collector", desc: "Classic bowie, collector-grade finish" },
+  { file: "knife-09.jpg", title: "Custom Commission", category: "custom", desc: "Client commission — custom specs and steel" },
+  { file: "knife-10.jpg", title: "Santoku", category: "kitchen", desc: "Japanese-influenced kitchen knife" },
+  { file: "knife-11.jpg", title: "Camp Knife", category: "hunting", desc: "Heavy-duty camp knife, full tang" },
+  { file: "knife-12.jpg", title: "Fillet Knife", category: "kitchen", desc: "Flexible fillet knife, long narrow blade" },
   { file: "knife-13.jpg", title: "Collector's Dagger", category: "collector", desc: "Double-edged collector's piece, exotic handle" },
-  { file: "knife-14.jpg", title: "Custom Order", category: "custom", desc: "Custom commission with client-specified design" },
-  { file: "knife-15.jpg", title: "Fighter Style", category: "collector", desc: "Fighter-style blade, presentation grade" },
-  { file: "knife-16.jpg", title: "Bespoke Blade", category: "custom", desc: "One-of-a-kind commission piece" },
+  { file: "knife-14.jpg", title: "Knife Sheath", category: "leather", desc: "Hand-stitched leather sheath, oil-tanned hide" },
+  { file: "knife-15.jpg", title: "Leather Belt & Sheath", category: "leather", desc: "Matching sheath and belt loop, saddle-stitched" },
+  { file: "knife-16.jpg", title: "Custom Leather Work", category: "leather", desc: "Bespoke leather goods — sheaths, straps and more" },
 ];
 
 const categories = [
-  { slug: "all", label: "All Knives" },
+  { slug: "all", label: "All Work" },
   { slug: "kitchen", label: "Kitchen & Chef's" },
   { slug: "hunting", label: "Hunting & Field" },
   { slug: "collector", label: "Collector's Pieces" },
+  { slug: "leather", label: "Fine Leatherwork" },
   { slug: "custom", label: "Custom Orders" },
 ];
 ---
 
-<BaseLayout title={`Gallery | ${config.site.title}`} description="Browse handcrafted custom knives by J.M. Amoedo — chef's knives, hunting knives, collector's pieces and custom commissions.">
+<BaseLayout title={`Product Gallery | ${config.site.title}`} description="Browse handcrafted custom knives and fine leatherwork by J.M. Amoedo — chef's knives, hunting knives, collector's pieces and custom commissions.">
   <Header slot="header" />
 
   <!-- Hero -->
-  <section class="relative py-24 overflow-hidden" style="background-color:#0f1923;">
+  <section class="relative py-28 overflow-hidden" style="background:#0a0d14;">
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 80% 50%, rgba(45,74,110,0.3) 0%, transparent 55%), radial-gradient(ellipse at 10% 70%, rgba(180,60,0,0.12) 0%, transparent 50%);"></div>
     <div class="absolute inset-0">
-      <img
-        src={`${base}assets/knife-06.jpg`}
-        alt="Custom knife gallery by J.M. Amoedo"
-        class="w-full h-full object-cover opacity-20"
-      />
-      <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(15,25,35,0.92) 0%, rgba(28,42,58,0.75) 100%);"></div>
+      <img src={`${base}assets/knife-06.jpg`} alt="" class="w-full h-full object-cover opacity-15" aria-hidden="true" />
+      <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(10,13,20,0.95) 0%,rgba(28,10,4,0.7) 100%);"></div>
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="font-semibold text-sm uppercase tracking-wider mb-4 block" style="color:#c8a96e;">Handcrafted Blades</span>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
-        The Knife <span style="background: linear-gradient(90deg, #c8a96e, #e8c98e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Gallery</span>
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <div class="h-px w-10 opacity-60" style="background:#d4500a;"></div>
+        <span class="text-xs font-bold uppercase tracking-[0.25em]" style="color:#d4500a;">Handcrafted Work</span>
+        <div class="h-px w-10 opacity-60" style="background:#d4500a;"></div>
+      </div>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif; letter-spacing:-0.02em;">
+        Product <span style="background:linear-gradient(90deg,#c8a96e,#e8c98e,#c8a96e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Gallery</span>
       </h1>
-      <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-        Each piece shown is an original — forged by hand, finished individually. Custom orders are available for all styles shown and beyond.
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed" style="font-weight:300;">
+        Knives, leatherwork and custom commissions. Every piece is an original.
       </p>
     </div>
   </section>
 
-  <!-- Wave Divider -->
-  <div class="-mb-1" style="background-color:#0f1923;">
-    <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none">
-      <path d="M0 60L60 52C120 44 240 28 360 24C480 20 600 28 720 32C840 36 960 36 1080 32C1200 28 1320 20 1380 16L1440 12V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="white"/>
+  <!-- Wave: hero → steel -->
+  <div class="-mb-1" style="background:#0a0d14;">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full block" preserveAspectRatio="none">
+      <path d="M0 80L80 65C160 50 320 20 480 15C640 10 800 30 960 38C1120 46 1280 38 1360 34L1440 30V80H0Z" fill="#0f1923"/>
     </svg>
   </div>
 
   <!-- Gallery -->
-  <section class="py-20 bg-white">
+  <section class="py-20" style="background:#0f1923;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <!-- Category Filter -->
-      <div class="flex flex-wrap gap-3 justify-center mb-12">
+      <div class="flex flex-wrap gap-3 justify-center mb-14">
         {categories.map(cat => (
           <button
-            class="gallery-filter-btn px-5 py-2.5 rounded-full font-semibold text-sm transition-all border"
+            class="gallery-filter-btn px-6 py-2.5 rounded-full font-semibold text-xs uppercase tracking-widest transition-all"
             data-category={cat.slug}
-            style={cat.slug === 'all' ? 'background-color:#1c2a3a; color:white; border-color:#1c2a3a;' : 'background-color:white; color:#374151; border-color:#d1d5db;'}
+            style={cat.slug === 'all'
+              ? 'background:#d4500a; color:white; border:1px solid #d4500a;'
+              : 'background:rgba(255,255,255,0.05); color:#9ca3af; border:1px solid rgba(255,255,255,0.1);'}
           >
             {cat.label}
           </button>
@@ -87,25 +91,32 @@ const categories = [
       </div>
 
       <!-- Image Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="gallery-grid">
-        {knives.map(knife => (
+      <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4" id="gallery-grid">
+        {items.map((item, i) => (
           <div
-            class="gallery-item group overflow-hidden rounded-3xl bg-gray-100 aspect-square cursor-pointer relative"
-            data-category={knife.category}
+            class="gallery-item group break-inside-avoid overflow-hidden rounded-2xl cursor-pointer relative block"
+            data-category={item.category}
+            style="background:#1c2a3a;"
           >
             <img
-              src={`${base}assets/${knife.file}`}
-              alt={`${knife.title} — custom knife by J.M. Amoedo`}
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              src={`${base}assets/${item.file}`}
+              alt={`${item.title} by J.M. Amoedo`}
+              class={`w-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100 ${i % 3 === 0 ? 'h-72' : i % 3 === 1 ? 'h-56' : 'h-64'}`}
               loading="lazy"
               onerror="this.parentElement.style.display='none';"
             />
             <!-- Hover overlay -->
-            <div class="absolute inset-0 flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl overflow-hidden" style="background: linear-gradient(to top, rgba(15,25,35,0.85) 0%, transparent 60%);">
+            <div class="absolute inset-0 flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl overflow-hidden" style="background:linear-gradient(to top, rgba(10,13,20,0.92) 0%, rgba(10,13,20,0.3) 50%, transparent 100%);">
               <div class="p-4 w-full">
-                <p class="text-white font-semibold text-sm" style="font-family: 'Cormorant Garamond', serif;">{knife.title}</p>
-                <p class="text-gray-300 text-xs mt-1">{knife.desc}</p>
+                <p class="text-white font-semibold text-sm mb-1" style="font-family:'Cormorant Garamond',serif;">{item.title}</p>
+                <p class="text-gray-400 text-xs">{item.desc}</p>
               </div>
+            </div>
+            <!-- Category pill -->
+            <div class="absolute top-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full" style="background:rgba(212,80,10,0.85); color:white;">
+                {categories.find(c => c.slug === item.category)?.label.split(' ')[0]}
+              </span>
             </div>
           </div>
         ))}
@@ -113,36 +124,47 @@ const categories = [
     </div>
   </section>
 
+  <!-- Wave: steel → mahogany -->
+  <div class="-mb-1" style="background:#0f1923;">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full block" preserveAspectRatio="none">
+      <path d="M0 0L80 15C160 30 320 60 480 65C640 70 800 50 960 42C1120 34 1280 42 1360 46L1440 50V0H0Z" fill="#1c0a04"/>
+    </svg>
+  </div>
+
   <!-- Ordering Info -->
-  <section class="py-20" style="background-color:#f5f1e8;">
+  <section class="py-24" style="background:#1c0a04;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center animate-on-scroll">
-        <span class="font-semibold text-sm uppercase tracking-wider" style="color:#1c2a3a;">How to Order</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="flex items-center justify-center gap-3 mb-5 animate-on-scroll">
+          <div class="h-px w-8 opacity-60" style="background:#c8a96e;"></div>
+          <span class="text-xs font-bold uppercase tracking-[0.2em]" style="color:#c8a96e;">Ordering</span>
+          <div class="h-px w-8 opacity-60" style="background:#c8a96e;"></div>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold text-white mt-2 mb-4 animate-on-scroll" style="font-family:'Cormorant Garamond',serif;">
           Interested in a Custom Piece?
         </h2>
-        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-10 text-left space-y-4">
-          <p class="text-gray-600 leading-relaxed">
-            Any style shown in the gallery can be adapted to your specifications — different steel, handle material, blade length or geometry. Pieces not shown are also possible; just describe what you have in mind.
+
+        <div class="mt-10 rounded-3xl p-8 md:p-10 text-left animate-on-scroll" style="background:rgba(255,255,255,0.04); border:1px solid rgba(200,169,110,0.15);">
+          <p class="text-gray-300 leading-relaxed mb-5">
+            Any style shown can be adapted to your specifications — different steel, handle material, blade length or leatherwork design. Pieces not shown are also possible; just describe what you have in mind.
           </p>
-          <p class="text-gray-600 leading-relaxed">
-            To start a commission or ask about availability, reach out by email:
+          <p class="text-gray-300 leading-relaxed mb-6">
+            To start a commission or ask about availability:
           </p>
-          <div class="flex items-center gap-3 mt-2">
-            <a href={`mailto:${config.contact.email}`} class="inline-flex items-center font-semibold hover:underline" style="color:#1c2a3a;">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              {config.contact.email}
-            </a>
-          </div>
-          <p class="text-sm text-gray-400 italic">
-            All knives are made to order. Lead time varies depending on current workload. Get in touch to discuss your project.
+          <a href={`mailto:${config.contact.email}`} class="inline-flex items-center gap-2 font-semibold transition-all hover:gap-4" style="color:#c8a96e;">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            {config.contact.email}
+          </a>
+          <p class="text-sm text-gray-500 italic mt-6">
+            All pieces are made to order. Lead time varies. Get in touch to discuss your project.
           </p>
         </div>
-        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-          <a href={`${base}contact/`} class="inline-flex items-center justify-center text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all shadow-lg hover:-translate-y-0.5" style="background-color:#1c2a3a;">
+
+        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center animate-on-scroll">
+          <a href={`${base}contact/`} class="inline-flex items-center justify-center text-white px-9 py-4 rounded-xl font-bold tracking-wide transition-all hover:-translate-y-0.5" style="background:#d4500a; box-shadow:0 0 30px rgba(212,80,10,0.2);">
             Send an Inquiry
           </a>
-          <a href={`${base}artwork/`} class="inline-flex items-center justify-center border-2 px-8 py-4 rounded-2xl font-semibold text-lg transition-all hover:bg-gray-50" style="border-color:#1c2a3a; color:#1c2a3a;">
+          <a href={`${base}artwork/`} class="inline-flex items-center justify-center px-9 py-4 rounded-xl font-semibold tracking-wide transition-all hover:bg-white/5" style="border:1px solid rgba(200,169,110,0.35); color:#c8a96e;">
             How It Works
           </a>
         </div>
@@ -161,28 +183,20 @@ const categories = [
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         const category = btn.dataset.category;
-
-        // Update button styles
         buttons.forEach(b => {
-          b.style.backgroundColor = 'white';
-          b.style.color = '#374151';
-          b.style.borderColor = '#d1d5db';
+          b.style.background = 'rgba(255,255,255,0.05)';
+          b.style.color = '#9ca3af';
+          b.style.border = '1px solid rgba(255,255,255,0.1)';
         });
-        btn.style.backgroundColor = '#1c2a3a';
+        btn.style.background = '#d4500a';
         btn.style.color = 'white';
-        btn.style.borderColor = '#1c2a3a';
+        btn.style.border = '1px solid #d4500a';
 
-        // Filter items
         items.forEach(item => {
-          if (category === 'all' || item.dataset.category === category) {
-            item.style.display = 'block';
-          } else {
-            item.style.display = 'none';
-          }
+          item.style.display = (category === 'all' || item.dataset.category === category) ? 'block' : 'none';
         });
       });
     });
   }
-
   document.addEventListener('astro:page-load', initGalleryFilter);
 </script>

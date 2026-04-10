@@ -20,83 +20,100 @@ contactObj["@type"] = "ContactPage";
 const contactJsonLd = JSON.stringify(contactObj);
 ---
 
-<BaseLayout title={`Contact | ${config.site.title}`} description={`Commission a custom knife from J.M. Amoedo. Get in touch at ${config.contact.email} to start your order.`}>
+<BaseLayout title={`Contact | ${config.site.title}`} description={`Commission a custom knife or leather piece from J.M. Amoedo. Get in touch at ${config.contact.email}.`}>
   <Header slot="header" />
 
   <!-- Hero -->
-  <section class="relative py-24 overflow-hidden" style="background-color:#0f1923;">
+  <section class="relative py-28 overflow-hidden" style="background:#0a0d14;">
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse at 70% 50%, rgba(180,60,0,0.14) 0%, transparent 55%), radial-gradient(ellipse at 20% 20%, rgba(45,74,110,0.25) 0%, transparent 50%);"></div>
     <div class="absolute inset-0">
-      <img
-        src={`${base}assets/knife-15.jpg`}
-        alt="Contact J.M. Amoedo"
-        class="w-full h-full object-cover opacity-20"
-      />
-      <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(15,25,35,0.92) 0%, rgba(28,42,58,0.75) 100%);"></div>
+      <img src={`${base}assets/knife-15.jpg`} alt="" class="w-full h-full object-cover opacity-15" aria-hidden="true" />
+      <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(10,13,20,0.95) 0%,rgba(28,10,4,0.65) 100%);"></div>
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="font-semibold text-sm uppercase tracking-wider mb-4 block" style="color:#c8a96e;">Start a Commission</span>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
-        Get in <span style="background: linear-gradient(90deg, #c8a96e, #e8c98e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Touch</span>
+      <div class="flex items-center justify-center gap-3 mb-5">
+        <div class="h-px w-10 opacity-60" style="background:#d4500a;"></div>
+        <span class="text-xs font-bold uppercase tracking-[0.25em]" style="color:#d4500a;">Start a Commission</span>
+        <div class="h-px w-10 opacity-60" style="background:#d4500a;"></div>
+      </div>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-2 mb-6" style="font-family:'Cormorant Garamond',serif; letter-spacing:-0.02em;">
+        Get in <span style="background:linear-gradient(90deg,#c8a96e,#e8c98e,#c8a96e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Touch</span>
       </h1>
-      <p class="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-        Whether you're commissioning a custom knife or just have a question — reach out and I'll respond as soon as I can.
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed" style="font-weight:300;">
+        Commission a knife, leather piece or custom order — or just ask a question.
       </p>
     </div>
   </section>
 
-  <!-- Wave Divider -->
-  <div class="-mb-1" style="background-color:#0f1923;">
-    <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none">
-      <path d="M0 60L60 52C120 44 240 28 360 24C480 20 600 28 720 32C840 36 960 36 1080 32C1200 28 1320 20 1380 16L1440 12V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="white"/>
+  <!-- Wave: hero → mahogany -->
+  <div class="-mb-1" style="background:#0a0d14;">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full block" preserveAspectRatio="none">
+      <path d="M0 80L80 65C160 50 320 20 480 15C640 10 800 30 960 38C1120 46 1280 38 1360 34L1440 30V80H0Z" fill="#1c0a04"/>
     </svg>
   </div>
 
-  <!-- Contact Form & Info -->
-  <section class="py-20 bg-white">
+  <!-- Contact Form & Info — mahogany -->
+  <section class="py-24" style="background:#1c0a04;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14">
-        <!-- Contact Form -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+
+        <!-- Form -->
         <div class="animate-on-scroll">
-          <h2 class="text-3xl font-bold text-gray-900 mb-2" style="font-family: 'Cormorant Garamond', serif;">Send a Message</h2>
-          <p class="text-gray-500 mb-8">Fill out the form below and I'll get back to you about your custom knife inquiry.</p>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-px w-8 opacity-60" style="background:#c8a96e;"></div>
+            <span class="text-xs font-bold uppercase tracking-[0.2em]" style="color:#c8a96e;">Send a Message</span>
+          </div>
+          <h2 class="text-3xl font-bold text-white mb-2" style="font-family:'Cormorant Garamond',serif;">Start the Conversation</h2>
+          <p class="text-gray-400 mb-8 text-sm leading-relaxed">Fill out the form and I'll get back to you about your inquiry.</p>
 
           <form
             action={`https://formspree.io/f/${config.integrations.formspree_id}`}
             method="POST"
-            class="space-y-6"
+            class="space-y-5"
             id="contact-form"
           >
             <div>
-              <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Your Name *</label>
-              <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:border-transparent transition-colors" style="focus:ring-color:#1c2a3a;" placeholder="Your name" autocomplete="name" />
+              <label for="name" class="block text-xs font-semibold uppercase tracking-widest mb-2" style="color:#9ca3af;">Your Name *</label>
+              <input type="text" id="name" name="name" required
+                class="w-full px-4 py-3.5 rounded-xl text-white placeholder-gray-600 focus:outline-none transition-all text-sm"
+                style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); focus:border-color:#c8a96e;"
+                placeholder="Your name" autocomplete="name" />
             </div>
 
             <div>
-              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-              <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:border-transparent transition-colors" placeholder="your@email.com" autocomplete="email" />
+              <label for="email" class="block text-xs font-semibold uppercase tracking-widest mb-2" style="color:#9ca3af;">Email Address *</label>
+              <input type="email" id="email" name="email" required
+                class="w-full px-4 py-3.5 rounded-xl text-white placeholder-gray-600 focus:outline-none transition-all text-sm"
+                style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);"
+                placeholder="your@email.com" autocomplete="email" />
             </div>
 
             <div>
-              <label for="inquiry-type" class="block text-sm font-medium text-gray-700 mb-2">What are you looking for?</label>
-              <select id="inquiry-type" name="inquiry-type" class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:border-transparent transition-colors">
-                <option value="">Select a type...</option>
-                <option value="kitchen">Kitchen / Chef's Knife</option>
-                <option value="hunting">Hunting / Field Knife</option>
-                <option value="collector">Collector's / Art Knife</option>
-                <option value="gift">Gift Commission</option>
-                <option value="question">General Question</option>
-                <option value="other">Other</option>
+              <label for="inquiry-type" class="block text-xs font-semibold uppercase tracking-widest mb-2" style="color:#9ca3af;">What are you looking for?</label>
+              <select id="inquiry-type" name="inquiry-type"
+                class="w-full px-4 py-3.5 rounded-xl text-white focus:outline-none transition-all text-sm"
+                style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#d1d5db;">
+                <option value="" style="background:#1c0a04;">Select a type...</option>
+                <option value="kitchen" style="background:#1c0a04;">Kitchen / Chef's Knife</option>
+                <option value="hunting" style="background:#1c0a04;">Hunting / Field Knife</option>
+                <option value="collector" style="background:#1c0a04;">Collector's / Art Knife</option>
+                <option value="leather" style="background:#1c0a04;">Fine Leatherwork</option>
+                <option value="gift" style="background:#1c0a04;">Gift Commission</option>
+                <option value="question" style="background:#1c0a04;">General Question</option>
               </select>
             </div>
 
             <div>
-              <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
-              <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:border-transparent transition-colors" placeholder="Tell me about what you're looking for — type of knife, intended use, any preferences for materials or size..."></textarea>
+              <label for="message" class="block text-xs font-semibold uppercase tracking-widest mb-2" style="color:#9ca3af;">Message *</label>
+              <textarea id="message" name="message" rows="6" required
+                class="w-full px-4 py-3.5 rounded-xl text-white placeholder-gray-600 focus:outline-none transition-all text-sm resize-none"
+                style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);"
+                placeholder="Tell me what you're looking for — type of piece, intended use, any material preferences, size..."></textarea>
             </div>
 
             <input type="text" name="_gotcha" style="display:none" />
 
-            <button type="submit" class="w-full text-white py-3.5 px-6 rounded-xl font-semibold text-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all disabled:opacity-60 disabled:cursor-not-allowed" style="background-color:#1c2a3a;">
+            <button type="submit" class="w-full text-white py-4 px-6 rounded-xl font-bold text-base tracking-wide transition-all hover:-translate-y-0.5 disabled:opacity-60" style="background:#d4500a; box-shadow:0 0 25px rgba(212,80,10,0.2);">
               Send Message
             </button>
           </form>
@@ -106,58 +123,58 @@ const contactJsonLd = JSON.stringify(contactObj);
           </div>
         </div>
 
-        <!-- Contact Information -->
+        <!-- Info -->
         <div class="animate-on-scroll">
-          <h2 class="text-3xl font-bold text-gray-900 mb-2" style="font-family: 'Cormorant Garamond', serif;">Get in Touch Directly</h2>
-          <p class="text-gray-500 mb-8">Prefer to send a direct email? I'm happy to hear from you.</p>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-px w-8 opacity-60" style="background:#d4500a;"></div>
+            <span class="text-xs font-bold uppercase tracking-[0.2em]" style="color:#d4500a;">Direct Contact</span>
+          </div>
+          <h2 class="text-3xl font-bold text-white mb-2" style="font-family:'Cormorant Garamond',serif;">Reach Out Directly</h2>
+          <p class="text-gray-400 mb-10 text-sm leading-relaxed">Prefer email? I'm happy to hear from you.</p>
 
-          <div class="space-y-6 mb-10">
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0">
-                <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background-color:#e8f0f8;">
-                  <svg class="w-6 h-6" style="color:#1c2a3a;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                </div>
+          <div class="space-y-5 mb-10">
+            <div class="flex items-center gap-4 p-5 rounded-2xl" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(212,80,10,0.12); border:1px solid rgba(212,80,10,0.2);">
+                <svg class="w-5 h-5" style="color:#d4500a;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
               </div>
               <div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-1">Email</h3>
-                <a href={`mailto:${config.contact.email}`} class="hover:underline transition-colors" style="color:#1c2a3a;">{config.contact.email}</a>
+                <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold mb-0.5">Email</p>
+                <a href={`mailto:${config.contact.email}`} class="text-white font-medium hover:underline transition-all">{config.contact.email}</a>
               </div>
             </div>
 
-            <div class="flex items-start space-x-4">
-              <div class="flex-shrink-0">
-                <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background-color:#e8f0f8;">
-                  <svg class="w-6 h-6" style="color:#1c2a3a;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                </div>
+            <div class="flex items-center gap-4 p-5 rounded-2xl" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(200,169,110,0.1); border:1px solid rgba(200,169,110,0.2);">
+                <svg class="w-5 h-5" style="color:#c8a96e;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               </div>
               <div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-1">Response Time</h3>
-                <p class="text-gray-600">I aim to respond to all inquiries within a few days.</p>
+                <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold mb-0.5">Response Time</p>
+                <p class="text-white font-medium">I aim to respond within a few days</p>
               </div>
             </div>
           </div>
 
-          <!-- Tips box -->
-          <div class="rounded-3xl p-8" style="background-color:#f5f1e8;">
-            <h3 class="font-bold text-gray-900 mb-4" style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;">Helpful to include in your message:</h3>
-            <ul class="space-y-2 text-sm text-gray-600">
+          <!-- Tips -->
+          <div class="rounded-3xl p-7" style="background:rgba(10,13,20,0.5); border:1px solid rgba(200,169,110,0.15);">
+            <p class="text-xs font-bold uppercase tracking-widest mb-4" style="color:#c8a96e;">Helpful to include:</p>
+            <ul class="space-y-2.5">
               {[
-                "Type of knife (chef's, hunter, collector, etc.)",
+                "Type of piece (knife, sheath, leatherwork, etc.)",
                 "What it will be used for",
-                "Approximate blade length preference",
-                "Handle material preference (wood, bone, etc.)",
-                "Any photos or references you like",
+                "Size or blade length preference",
+                "Material preferences",
+                "Photos or references you like",
                 "Budget range if you have one"
               ].map(tip => (
-                <li class="flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background-color:#c8a96e;"></span>
+                <li class="flex items-start gap-2.5 text-sm text-gray-400">
+                  <span class="w-1 h-1 rounded-full flex-shrink-0 mt-2" style="background:#d4500a;"></span>
                   {tip}
                 </li>
               ))}
             </ul>
-            <a href={`${base}artwork/`} class="inline-flex items-center mt-5 font-semibold text-sm hover:underline" style="color:#1c2a3a;">
+            <a href={`${base}artwork/`} class="inline-flex items-center gap-1.5 mt-5 text-xs font-bold uppercase tracking-widest transition-all hover:gap-3" style="color:#c8a96e;">
               Full ordering guide
-              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
           </div>
         </div>
@@ -176,23 +193,26 @@ const contactJsonLd = JSON.stringify(contactObj);
     if (form) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.innerHTML = '<svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>Sending...';
-        }
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
         const formData = new FormData(form);
         try {
           const response = await fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
           if (response.ok) {
-            formStatus!.className = 'mt-4 p-4 rounded-xl bg-green-50 border border-green-200';
-            formMessage!.textContent = "Thank you! I'll be in touch soon.";
-            formMessage!.className = 'text-green-800 font-medium';
+            formStatus!.className = 'mt-4 p-4 rounded-xl';
+            formStatus!.style.background = 'rgba(16,185,129,0.1)';
+            formStatus!.style.border = '1px solid rgba(16,185,129,0.3)';
+            formMessage!.textContent = "Thank you — I'll be in touch soon.";
+            formMessage!.style.color = '#6ee7b7';
+            formMessage!.className = 'font-medium text-sm';
             form.reset();
-          } else { throw new Error('Form submission failed'); }
+          } else { throw new Error('Failed'); }
         } catch {
-          formStatus!.className = 'mt-4 p-4 rounded-xl bg-red-50 border border-red-200';
-          formMessage!.textContent = 'Sorry, there was an error. Please try emailing directly.';
-          formMessage!.className = 'text-red-800 font-medium';
+          formStatus!.className = 'mt-4 p-4 rounded-xl';
+          formStatus!.style.background = 'rgba(239,68,68,0.1)';
+          formStatus!.style.border = '1px solid rgba(239,68,68,0.3)';
+          formMessage!.textContent = 'Sorry, there was an error. Please email directly.';
+          formMessage!.style.color = '#fca5a5';
+          formMessage!.className = 'font-medium text-sm';
         }
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send Message'; }
         formStatus!.classList.remove('hidden');

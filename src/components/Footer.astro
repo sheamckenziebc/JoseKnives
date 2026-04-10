@@ -10,7 +10,7 @@ const base = import.meta.env.BASE_URL;
 const currentYear = new Date().getFullYear();
 ---
 
-<footer style="background-color:#0f1923;" class="text-white">
+<footer style="background-color:#0a0d14; border-top:1px solid rgba(200,169,110,0.1);" class="text-white">
   <!-- Main Footer -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -30,17 +30,17 @@ const currentYear = new Date().getFullYear();
           </div>
         </div>
         <p class="text-gray-400 text-sm leading-relaxed mb-6">
-          Handcrafted blades forged by hand. Each knife is built for balance, beauty and a lifetime of use.
+          Custom knives and fine leatherwork. Every piece is built for beauty, performance and a lifetime of use.
         </p>
         <!-- Trust Badges -->
         <div class="flex flex-wrap items-center gap-3">
-          <div class="flex items-center gap-1.5 text-xs text-gray-400 rounded-full px-3 py-1.5" style="background-color:#1c2a3a;">
-            <svg class="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          <div class="flex items-center gap-1.5 text-xs text-gray-400 rounded-full px-3 py-1.5" style="background:rgba(212,80,10,0.12); border:1px solid rgba(212,80,10,0.2);">
+            <span style="color:#d4500a;">⚒</span>
             Hand Forged
           </div>
-          <div class="flex items-center gap-1.5 text-xs text-gray-400 rounded-full px-3 py-1.5" style="background-color:#1c2a3a;">
-            <svg class="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-            Custom Made
+          <div class="flex items-center gap-1.5 text-xs text-gray-400 rounded-full px-3 py-1.5" style="background:rgba(200,169,110,0.08); border:1px solid rgba(200,169,110,0.2);">
+            <span style="color:#c8a96e;">✦</span>
+            Fine Leatherwork
           </div>
         </div>
       </div>
@@ -49,7 +49,8 @@ const currentYear = new Date().getFullYear();
       <div>
         <h3 class="text-sm font-bold uppercase tracking-wider text-gray-300 mb-4">Browse</h3>
         <ul class="space-y-3 text-sm">
-          <li><a href={`${base}gallery/`} class="text-gray-400 hover:text-white transition-colors">Knife Gallery</a></li>
+          <li><a href={`${base}gallery/`} class="text-gray-400 hover:text-white transition-colors">Product Gallery</a></li>
+          <li><a href={`${base}gallery/`} class="text-gray-400 hover:text-white transition-colors">Fine Leatherwork</a></li>
           <li><a href={`${base}artwork/`} class="text-gray-400 hover:text-white transition-colors">Custom Orders</a></li>
           <li><a href={`${base}about/`} class="text-gray-400 hover:text-white transition-colors">The Maker</a></li>
         </ul>
@@ -84,8 +85,8 @@ const currentYear = new Date().getFullYear();
           </div>
         </div>
         <div class="mt-6">
-          <a href={`${base}contact/`} class="inline-flex items-center bg-amber-600 text-white px-5 py-2.5 rounded-lg font-bold text-sm hover:bg-amber-500 transition-all">
-            Commission a Knife
+          <a href={`${base}contact/`} class="inline-flex items-center text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:-translate-y-0.5" style="background:#d4500a; box-shadow:0 0 20px rgba(212,80,10,0.25);">
+            Commission a Piece
           </a>
         </div>
       </div>
