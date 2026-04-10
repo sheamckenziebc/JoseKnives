@@ -11,11 +11,9 @@ const config = yaml.load(readFileSync(configPath, 'utf8'));
 const base = import.meta.env.BASE_URL;
 
 const aboutLogoUrl = new URL(config.branding.logo, Astro.site).href;
-const contactPt: Record<string, any> = { telephone: config.contact.phone, contactType: "Customer Service", email: config.contact.email };
+const contactPt: Record<string, any> = { contactType: "Customer Service", email: config.contact.email };
 contactPt["@type"] = "ContactPoint";
-const addr: Record<string, any> = { streetAddress: config.contact.address };
-addr["@type"] = "PostalAddress";
-const mainEntity: Record<string, any> = { name: config.site.title, description: config.site.description, url: config.site.url, logo: aboutLogoUrl, contactPoint: contactPt, address: addr };
+const mainEntity: Record<string, any> = { name: config.site.title, description: config.site.description, url: config.site.url, logo: aboutLogoUrl, contactPoint: contactPt };
 mainEntity["@type"] = "Organization";
 const aboutObj: Record<string, any> = { mainEntity };
 aboutObj["@context"] = "https://schema.org";
@@ -23,154 +21,156 @@ aboutObj["@type"] = "AboutPage";
 const aboutJsonLd = JSON.stringify(aboutObj);
 ---
 
-<BaseLayout title={`Artist | ${config.site.title}`} description="Meet Franziska Cody — ceramic artist at Art and Soul Pottery in Telkwa, BC. Working in clay since 2006, creating wheel thrown and hand built pottery in the Bulkley Valley.">
+<BaseLayout title={`The Maker | ${config.site.title}`} description="Meet J.M. Amoedo — custom knife maker. Each blade is forged by hand, shaped from raw steel and built to last a lifetime.">
   <Header slot="header" />
 
   <!-- Hero Section -->
-  <section class="relative bg-gradient-to-br from-stone-900 via-red-900 to-stone-800 py-20">
-    <div class="absolute inset-0 opacity-5">
-      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.15&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+  <section class="relative py-24 overflow-hidden" style="background-color:#0f1923;">
+    <div class="absolute inset-0">
+      <img
+        src={`${base}assets/knife-12.jpg`}
+        alt="J.M. Amoedo at work in the forge"
+        class="w-full h-full object-cover opacity-25"
+      />
+      <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(15,25,35,0.9) 0%, rgba(28,42,58,0.7) 100%);"></div>
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto">
-        <span class="text-amber-400 font-semibold text-sm uppercase tracking-wider">About the Artist</span>
-        <h1 class="text-4xl md:text-5xl font-bold text-white mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
-          Franziska <span class="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">Cody</span>
+        <span class="font-semibold text-sm uppercase tracking-wider mb-4 block" style="color:#c8a96e;">The Maker</span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
+          J.M. <span style="background: linear-gradient(90deg, #c8a96e, #e8c98e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Amoedo</span>
         </h1>
-        <p class="text-xl text-red-100 leading-relaxed">
-          Ceramic artist working in clay since 2006 in the beautiful Bulkley Valley
+        <p class="text-xl text-gray-300 leading-relaxed">
+          Custom knife maker. Each blade is forged by hand — shaped from raw steel and built to perform for a lifetime.
         </p>
       </div>
     </div>
   </section>
 
   <!-- Wave Divider -->
-  <div class="bg-gradient-to-br from-stone-900 via-red-900 to-stone-800 -mb-1">
+  <div class="-mb-1" style="background-color:#0f1923;">
     <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none">
       <path d="M0 60L60 52C120 44 240 28 360 24C480 20 600 28 720 32C840 36 960 36 1080 32C1200 28 1320 20 1380 16L1440 12V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="white"/>
     </svg>
   </div>
 
-  <!-- Artist Story -->
+  <!-- Maker's Story -->
   <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
         <div class="animate-on-scroll">
           <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6" style="font-family: 'Cormorant Garamond', serif;">
-            About Me
+            The Story Behind the Blades
           </h2>
-          <div class="prose prose-lg text-gray-600 space-y-6">
-            <p class="leading-relaxed">
-              I have been working in clay since 2006. It all started with meeting my husband and deciding to permanently move to Canada. I had to wait for my permanent residency for about one year, during which I wasn't able to work and therefore decided to dedicate myself completely to what I love most – being creative. I filled my days with painting, writing, wood work and discovered pottery along the way.
+          <div class="space-y-5 text-gray-600 text-lg leading-relaxed">
+            <p>
+              J.M. Amoedo is a custom knife maker driven by a deep respect for the craft of blade making. Every knife that leaves the workshop is built from raw materials, shaped by hand, and tested before it goes out the door.
             </p>
-            <p class="leading-relaxed">
-              I became a member of the Prince George Potters Guild and enrolled in a couple of classes offered by the organization. I quickly became fascinated by the meditative nature of working with clay, the things that it continues to teach me, and the endless ways of creatively applying its use, which resulted in the continuation of producing wheel thrown and hand build pottery ever since.
+            <p>
+              The work starts at the forge — raw steel drawn out, shaped under heat and hammer, then ground to geometry on the wheel. Handles are fitted from a range of natural materials: hardwoods, stabilized burls, bone, horn and brass, chosen for the knife and the person who'll carry it.
             </p>
-            <p class="leading-relaxed">
-              Besides creating functional dinnerware, decorative vessels, sculptures and masks, I have been exploring ways of crafting jewelry, wall murals, tiles and home fixtures such as sinks, clocks and lamps from stoneware and porcelain.
-            </p>
-            <p class="leading-relaxed">
-              Since June 2009, with the support of my husband, I have been working as a full time ceramic artist out of my studio and gallery in the beautiful Bulkley Valley. My work is strongly influenced by patterns and forms derived from nature and the feminine, as I am constantly inspired by the beauty of mother earth.
+            <p>
+              The goal with every blade is the same: a knife that feels right in the hand, holds an edge, and gets better with use.
             </p>
           </div>
         </div>
         <div class="relative animate-on-scroll">
           <img
-            src={`${base}assets/artist-portrait.jpg`}
-            alt="Franziska Cody at the potter's wheel"
-            class="rounded-2xl shadow-lg w-full h-auto object-cover"
+            src={`${base}assets/knife-13.jpg`}
+            alt="Detail of a J.M. Amoedo custom knife"
+            class="rounded-3xl shadow-xl w-full h-auto object-cover"
             loading="lazy"
+            onerror="this.src=''; this.style.display='none';"
           />
-          <!-- Stats overlay -->
-          <div class="absolute -bottom-8 left-8 right-8 bg-white rounded-xl shadow-xl p-6 grid grid-cols-2 gap-4 text-center">
-            <div>
-              <div class="text-3xl font-extrabold text-red-800">2006</div>
-              <div class="text-sm text-gray-500 font-medium">Working in Clay</div>
-            </div>
-            <div class="border-l border-gray-200">
-              <div class="text-3xl font-extrabold text-red-800">2009</div>
-              <div class="text-sm text-gray-500 font-medium">Gallery Opened</div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Technique & Philosophy -->
-  <section class="py-20 bg-stone-50">
+  <!-- The Craft -->
+  <section class="py-20" style="background-color:#f5f1e8;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-12 animate-on-scroll">
-          <span class="text-red-800 font-semibold text-sm uppercase tracking-wider">Craft & Philosophy</span>
+          <span class="font-semibold text-sm uppercase tracking-wider" style="color:#1c2a3a;">Craft & Philosophy</span>
           <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4" style="font-family: 'Cormorant Garamond', serif;">
-            Technique & Vision
+            Materials & Method
           </h2>
-          <div class="w-16 h-1 bg-amber-500 mx-auto mt-4 rounded-full"></div>
+          <div class="mt-4 h-1 w-16 rounded mx-auto" style="background-color:#c8a96e;"></div>
         </div>
 
-        <div class="animate-on-scroll prose prose-lg text-gray-600 space-y-6 max-w-none">
-          <p class="leading-relaxed">
-            I am using slip application, carving and wax resist techniques as well as vibrant glaze colour applications to define and enhance the surface of my pottery. All pieces are fired with the use of a electric Kiln in a oxidation atmosphere to 1220°C.
-          </p>
-          <p class="leading-relaxed">
-            I strive to produce pottery that has a sense of strength and stability, as well as a certain vitality, flow and aliveness. Equally important to me is the satisfaction of creating work which honours, celebrates and embraces daily life and enhances the feeling of harmony within our living environment.
-          </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-children">
+          {[
+            {
+              icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"/>`,
+              title: "Steel",
+              desc: "High-carbon and stainless steels selected for their performance characteristics — hardness, toughness, edge retention and corrosion resistance."
+            },
+            {
+              icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>`,
+              title: "Handle Materials",
+              desc: "Stabilized hardwoods, natural burls, bone, horn, antler and brass. Each handle material is chosen for how it looks, how it ages and how it feels in use."
+            },
+            {
+              icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>`,
+              title: "Finishing",
+              desc: "Each blade is hand-sanded through progressive grits, heat-treated to specification, then finished to a consistent edge before fitting and final assembly."
+            }
+          ].map(item => (
+            <div class="animate-on-scroll bg-white rounded-3xl p-8 shadow-sm border border-gray-100 card-hover">
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 card-icon" style="background-color:#e8f0f8;">
+                <svg class="w-7 h-7" style="color:#1c2a3a;" fill="none" stroke="currentColor" viewBox="0 0 24 24" set:html={item.icon} />
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3" style="font-family: 'Cormorant Garamond', serif;">{item.title}</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Artist Statement -->
+  <!-- Photo Grid -->
   <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-12 animate-on-scroll">
-          <span class="text-red-800 font-semibold text-sm uppercase tracking-wider">Artist Statement</span>
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4" style="font-family: 'Cormorant Garamond', serif;">
-            On Creativity & Clay
-          </h2>
-          <div class="w-16 h-1 bg-amber-500 mx-auto mt-4 rounded-full"></div>
-        </div>
+      <div class="text-center mb-12 animate-on-scroll">
+        <span class="font-semibold text-sm uppercase tracking-wider" style="color:#1c2a3a;">The Work</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4" style="font-family: 'Cormorant Garamond', serif;">
+          Recent Pieces
+        </h2>
+        <div class="mt-4 h-1 w-16 rounded mx-auto" style="background-color:#c8a96e;"></div>
+      </div>
 
-        <div class="animate-on-scroll bg-stone-50 rounded-2xl p-8 md:p-12 border border-gray-100">
-          <blockquote class="text-lg text-gray-600 leading-relaxed italic mb-6" style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;">
-            <p class="mb-6">
-              "If we can stay 'on center' and look with clear seeing eyes and compassionate hearts at what we have done, we may advance in self-knowledge and in knowledge of our materials and of the world in its larger concerns."
-            </p>
-            <cite class="text-gray-500 text-sm not-italic block">— M.C. Richards, American poet, potter and writer</cite>
-          </blockquote>
-
-          <div class="prose prose-lg text-gray-600 space-y-6 mt-8 not-italic">
-            <p class="leading-relaxed">
-              I think that we come to better know ourselves through the images we create and the actions we are taking as they are a manifestation of our conscious and subconscious intentions. Life at large then seems to be but a creative playground offering endless opportunities to explore the essence of our being, which I believe is of an ever evolving, spiritual nature.
-            </p>
-            <p class="leading-relaxed">
-              Through creating pottery and reflecting on its many metaphorical aspects, I have been both inspired and challenged by themes such as balance, measures of beauty and harmony, freedom, boundaries and limitations, expectations, attachment and transformation.
-            </p>
-            <p class="leading-relaxed">
-              It is in working with clay, pigment and in poetry that I come to understand the importance of honouring the creative process above all, including challenge and satisfaction equally. I feel then, that when we put pure intentions into every step along our path, outcomes will be a direct reflection of those objectives, as I believe, that in each moment we express what comes from the heart, we touch beauty.
-            </p>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 stagger-children">
+        {[14,15,16,1,2,3].map((n) => (
+          <div class="animate-on-scroll overflow-hidden rounded-2xl aspect-square bg-gray-100">
+            <img
+              src={`${base}assets/knife-${String(n).padStart(2,'0')}.jpg`}
+              alt="Custom knife by J.M. Amoedo"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              onerror="this.parentElement.style.display='none';"
+            />
           </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="relative py-20 bg-gradient-to-br from-red-900 to-stone-900 overflow-hidden">
+  <section class="relative py-20 overflow-hidden" style="background-color:#1c2a3a;">
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" style="font-family: 'Cormorant Garamond', serif;">
-        Visit the Studio
+        Commission Your Knife
       </h2>
-      <p class="text-xl text-red-100 mb-8 max-w-2xl mx-auto">
-        Come watch pottery being made and browse the gallery at 1269 Hwy 16, Telkwa, BC.
+      <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+        Get in touch to discuss what you have in mind. Every knife starts with a conversation.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href={`${base}gallery/`} class="inline-flex items-center justify-center bg-amber-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-amber-500 transition-all shadow-lg">
-          View Pottery Gallery
+        <a href={`${base}gallery/`} class="inline-flex items-center justify-center bg-amber-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-amber-500 transition-all shadow-lg">
+          View Gallery
         </a>
-        <a href={`${base}contact/`} class="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition-all">
+        <a href={`${base}contact/`} class="inline-flex items-center justify-center border-2 border-white/30 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/10 transition-all">
           Get in Touch
         </a>
       </div>

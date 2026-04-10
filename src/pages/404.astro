@@ -16,18 +16,18 @@ const base = import.meta.env.BASE_URL;
 
   <section class="py-32 bg-white">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="text-8xl font-extrabold text-red-200 mb-4">404</div>
+      <div class="text-8xl font-extrabold mb-4" style="color:#e8f0f8;">404</div>
       <h1 class="text-3xl font-bold text-gray-900 mb-4" style="font-family: 'Cormorant Garamond', serif;">Page Not Found</h1>
       <p class="text-xl text-gray-600 mb-8">The page you're looking for doesn't exist or has been moved.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href={base} class="inline-flex items-center justify-center bg-red-800 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-900 transition-all">
+        <a href={base} class="inline-flex items-center justify-center text-white px-6 py-3 rounded-xl font-bold transition-all" style="background-color:#1c2a3a;">
           Back to Home
         </a>
-        <a href={`${base}gallery/`} class="inline-flex items-center justify-center border-2 border-red-800 text-red-800 px-6 py-3 rounded-lg font-semibold hover:bg-red-50 transition-all">
-          View Pottery Gallery
+        <a href={`${base}gallery/`} class="inline-flex items-center justify-center border-2 px-6 py-3 rounded-xl font-semibold transition-all hover:bg-slate-50" style="border-color:#1c2a3a; color:#1c2a3a;">
+          View Gallery
         </a>
-        <a href={`${base}contact/`} class="inline-flex items-center justify-center border-2 border-gray-300 text-gray-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-all">
-          Contact Us
+        <a href={`${base}contact/`} class="inline-flex items-center justify-center border-2 border-gray-300 text-gray-600 px-6 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-all">
+          Contact
         </a>
       </div>
     </div>

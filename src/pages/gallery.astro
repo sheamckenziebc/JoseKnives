@@ -10,72 +10,102 @@ const configPath = join(process.cwd(), 'config.yaml');
 const config = yaml.load(readFileSync(configPath, 'utf8'));
 const base = import.meta.env.BASE_URL;
 
+const knives = [
+  { file: "knife-01.jpg", title: "Chef's Knife", category: "kitchen", desc: "Full-tang chef's knife with hardwood handle" },
+  { file: "knife-02.jpg", title: "Custom Kitchen Knife", category: "kitchen", desc: "Hand-ground kitchen blade, stabilized burl handle" },
+  { file: "knife-03.jpg", title: "Hunter's Drop Point", category: "hunting", desc: "Drop-point hunter with natural bone handle" },
+  { file: "knife-04.jpg", title: "Field Knife", category: "hunting", desc: "Fixed blade field knife, brass guard" },
+  { file: "knife-05.jpg", title: "Skinning Knife", category: "hunting", desc: "Curved skinner for field dressing" },
+  { file: "knife-06.jpg", title: "Art Knife", category: "collector", desc: "Collector's piece with decorative handle work" },
+  { file: "knife-07.jpg", title: "Presentation Knife", category: "collector", desc: "Display-grade blade with premium materials" },
+  { file: "knife-08.jpg", title: "Custom Bowie", category: "collector", desc: "Classic bowie style, collector-grade finish" },
+  { file: "knife-09.jpg", title: "Custom Commission", category: "custom", desc: "Client commission — custom specs and materials" },
+  { file: "knife-10.jpg", title: "Santoku Style", category: "kitchen", desc: "Japanese-influenced kitchen knife" },
+  { file: "knife-11.jpg", title: "Camp Knife", category: "hunting", desc: "Heavy-duty camp knife, full tang construction" },
+  { file: "knife-12.jpg", title: "Fillet Knife", category: "kitchen", desc: "Flexible fillet knife with long narrow blade" },
+  { file: "knife-13.jpg", title: "Collector's Dagger", category: "collector", desc: "Double-edged collector's piece, exotic handle" },
+  { file: "knife-14.jpg", title: "Custom Order", category: "custom", desc: "Custom commission with client-specified design" },
+  { file: "knife-15.jpg", title: "Fighter Style", category: "collector", desc: "Fighter-style blade, presentation grade" },
+  { file: "knife-16.jpg", title: "Bespoke Blade", category: "custom", desc: "One-of-a-kind commission piece" },
+];
+
 const categories = [
-  { name: "Serving & Baking", slug: "serving", description: "Platters, bowls, baking dishes and serving ware for everyday use and special occasions." },
-  { name: "Storage Pots", slug: "storage", description: "Lidded jars, canisters and storage vessels for kitchen and home." },
-  { name: "Vases", slug: "vases", description: "Decorative and functional vases in various sizes and glazes." },
-  { name: "Drinking", slug: "drinking", description: "Mugs, cups, teapots and drinking vessels for your daily rituals." },
-  { name: "Other", slug: "other", description: "Sculptures, masks, jewelry, wall murals, tiles, sinks, clocks and lamps." },
-  { name: "Custom Orders", slug: "custom", description: "Combining form, colour and images in unique ways to suit your interests." }
+  { slug: "all", label: "All Knives" },
+  { slug: "kitchen", label: "Kitchen & Chef's" },
+  { slug: "hunting", label: "Hunting & Field" },
+  { slug: "collector", label: "Collector's Pieces" },
+  { slug: "custom", label: "Custom Orders" },
 ];
 ---
 
-<BaseLayout title={`Pottery Gallery | ${config.site.title}`} description="Browse handmade pottery by Franziska Cody — serving ware, storage pots, vases, mugs and custom pieces. All food, microwave and oven safe.">
+<BaseLayout title={`Gallery | ${config.site.title}`} description="Browse handcrafted custom knives by J.M. Amoedo — chef's knives, hunting knives, collector's pieces and custom commissions.">
   <Header slot="header" />
 
   <!-- Hero -->
-  <section class="relative bg-gradient-to-br from-stone-900 via-red-900 to-stone-800 py-20">
-    <div class="absolute inset-0 opacity-5">
-      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.15&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+  <section class="relative py-24 overflow-hidden" style="background-color:#0f1923;">
+    <div class="absolute inset-0">
+      <img
+        src={`${base}assets/knife-06.jpg`}
+        alt="Custom knife gallery by J.M. Amoedo"
+        class="w-full h-full object-cover opacity-20"
+      />
+      <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(15,25,35,0.92) 0%, rgba(28,42,58,0.75) 100%);"></div>
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="text-amber-400 font-semibold text-sm uppercase tracking-wider">Handmade Pottery</span>
-      <h1 class="text-4xl md:text-5xl font-bold text-white mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
-        Pottery <span class="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">Gallery</span>
+      <span class="font-semibold text-sm uppercase tracking-wider mb-4 block" style="color:#c8a96e;">Handcrafted Blades</span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
+        The Knife <span style="background: linear-gradient(90deg, #c8a96e, #e8c98e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Gallery</span>
       </h1>
-      <p class="text-xl text-red-100 max-w-3xl mx-auto leading-relaxed">
-        All pieces shown represent an assortment of what is offered by Art and Soul Pottery. Additionally, I can create custom items, combining form, colour and images in unique ways to suit your interests.
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        Each piece shown is an original — forged by hand, finished individually. Custom orders are available for all styles shown and beyond.
       </p>
     </div>
   </section>
 
   <!-- Wave Divider -->
-  <div class="bg-gradient-to-br from-stone-900 via-red-900 to-stone-800 -mb-1">
+  <div class="-mb-1" style="background-color:#0f1923;">
     <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none">
       <path d="M0 60L60 52C120 44 240 28 360 24C480 20 600 28 720 32C840 36 960 36 1080 32C1200 28 1320 20 1380 16L1440 12V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="white"/>
     </svg>
   </div>
 
-  <!-- Gallery Categories -->
+  <!-- Gallery -->
   <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12 animate-on-scroll">
-        <span class="text-red-800 font-semibold text-sm uppercase tracking-wider">Browse by Category</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4" style="font-family: 'Cormorant Garamond', serif;">
-          Pottery Collections
-        </h2>
-        <div class="w-16 h-1 bg-amber-500 mx-auto mt-4 rounded-full"></div>
+
+      <!-- Category Filter -->
+      <div class="flex flex-wrap gap-3 justify-center mb-12">
+        {categories.map(cat => (
+          <button
+            class="gallery-filter-btn px-5 py-2.5 rounded-full font-semibold text-sm transition-all border"
+            data-category={cat.slug}
+            style={cat.slug === 'all' ? 'background-color:#1c2a3a; color:white; border-color:#1c2a3a;' : 'background-color:white; color:#374151; border-color:#d1d5db;'}
+          >
+            {cat.label}
+          </button>
+        ))}
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
-        {categories.map((cat) => (
-          <div class="animate-on-scroll group bg-stone-50 rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-            <div class="h-48 bg-gradient-to-br from-red-100 to-amber-100 flex items-center justify-center relative overflow-hidden">
-              <img
-                src={`${base}assets/gallery-${cat.slug}.jpg`}
-                alt={`${cat.name} pottery by Franziska Cody`}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              />
-              <div class="hidden items-center justify-center absolute inset-0 bg-gradient-to-br from-red-100 to-amber-100">
-                <svg class="w-16 h-16 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      <!-- Image Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="gallery-grid">
+        {knives.map(knife => (
+          <div
+            class="gallery-item group overflow-hidden rounded-3xl bg-gray-100 aspect-square cursor-pointer relative"
+            data-category={knife.category}
+          >
+            <img
+              src={`${base}assets/${knife.file}`}
+              alt={`${knife.title} — custom knife by J.M. Amoedo`}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              onerror="this.parentElement.style.display='none';"
+            />
+            <!-- Hover overlay -->
+            <div class="absolute inset-0 flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl overflow-hidden" style="background: linear-gradient(to top, rgba(15,25,35,0.85) 0%, transparent 60%);">
+              <div class="p-4 w-full">
+                <p class="text-white font-semibold text-sm" style="font-family: 'Cormorant Garamond', serif;">{knife.title}</p>
+                <p class="text-gray-300 text-xs mt-1">{knife.desc}</p>
               </div>
-              <div class="absolute top-3 right-3 bg-white/90 text-xs font-bold text-gray-700 px-2 py-1 rounded-full">{cat.name}</div>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-gray-900 mb-2" style="font-family: 'Cormorant Garamond', serif;">{cat.name}</h3>
-              <p class="text-gray-600 text-sm leading-relaxed">{cat.description}</p>
             </div>
           </div>
         ))}
@@ -84,33 +114,37 @@ const categories = [
   </section>
 
   <!-- Ordering Info -->
-  <section class="py-20 bg-stone-50">
+  <section class="py-20" style="background-color:#f5f1e8;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center animate-on-scroll">
-        <span class="text-red-800 font-semibold text-sm uppercase tracking-wider">How to Order</span>
+        <span class="font-semibold text-sm uppercase tracking-wider" style="color:#1c2a3a;">How to Order</span>
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
-          Purchase & Custom Orders
+          Interested in a Custom Piece?
         </h2>
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-left space-y-4">
+        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-10 text-left space-y-4">
           <p class="text-gray-600 leading-relaxed">
-            You are also welcome to request designs not shown on the website. Art and Soul Pottery will then create a one of a kind piece(s) using your personal logo/image.
+            Any style shown in the gallery can be adapted to your specifications — different steel, handle material, blade length or geometry. Pieces not shown are also possible; just describe what you have in mind.
           </p>
           <p class="text-gray-600 leading-relaxed">
-            To purchase artwork please contact Art and Soul Pottery at:
+            To start a commission or ask about availability, reach out by email:
           </p>
-          <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-            <a href={`tel:${config.contact.phone}`} class="inline-flex items-center text-red-800 font-semibold hover:text-red-900 transition-colors">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-              {config.contact.phone}
-            </a>
-            <a href={`mailto:${config.contact.email}`} class="inline-flex items-center text-red-800 font-semibold hover:text-red-900 transition-colors">
+          <div class="flex items-center gap-3 mt-2">
+            <a href={`mailto:${config.contact.email}`} class="inline-flex items-center font-semibold hover:underline" style="color:#1c2a3a;">
               <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
               {config.contact.email}
             </a>
           </div>
-          <p class="text-sm text-gray-500 italic">
-            All orders require a min. turn around period of one month, or inquire in store about availability of pottery. All prices are in Canadian dollars, applicable taxes are added additionally.
+          <p class="text-sm text-gray-400 italic">
+            All knives are made to order. Lead time varies depending on current workload. Get in touch to discuss your project.
           </p>
+        </div>
+        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+          <a href={`${base}contact/`} class="inline-flex items-center justify-center text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all shadow-lg hover:-translate-y-0.5" style="background-color:#1c2a3a;">
+            Send an Inquiry
+          </a>
+          <a href={`${base}artwork/`} class="inline-flex items-center justify-center border-2 px-8 py-4 rounded-2xl font-semibold text-lg transition-all hover:bg-gray-50" style="border-color:#1c2a3a; color:#1c2a3a;">
+            How It Works
+          </a>
         </div>
       </div>
     </div>
@@ -118,3 +152,37 @@ const categories = [
 
   <Footer slot="footer" />
 </BaseLayout>
+
+<script>
+  function initGalleryFilter() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.gallery-filter-btn');
+    const items = document.querySelectorAll<HTMLElement>('.gallery-item');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.dataset.category;
+
+        // Update button styles
+        buttons.forEach(b => {
+          b.style.backgroundColor = 'white';
+          b.style.color = '#374151';
+          b.style.borderColor = '#d1d5db';
+        });
+        btn.style.backgroundColor = '#1c2a3a';
+        btn.style.color = 'white';
+        btn.style.borderColor = '#1c2a3a';
+
+        // Filter items
+        items.forEach(item => {
+          if (category === 'all' || item.dataset.category === category) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initGalleryFilter);
+</script>

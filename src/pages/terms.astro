@@ -11,10 +11,10 @@ const config = yaml.load(readFileSync(configPath, 'utf8'));
 const base = import.meta.env.BASE_URL;
 ---
 
-<BaseLayout title={`Terms of Service | ${config.site.title}`} description="Terms of service for Art and Soul Pottery." noindex={true}>
+<BaseLayout title={`Terms of Service | ${config.site.title}`} description="Terms of service for J.M. Amoedo Custom Knives." noindex={true}>
   <Header slot="header" />
 
-  <section class="relative bg-gradient-to-br from-stone-900 via-red-900 to-stone-800 py-16">
+  <section class="relative py-16" style="background-color:#1c2a3a;">
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h1 class="text-4xl font-bold text-white" style="font-family: 'Cormorant Garamond', serif;">Terms of Service</h1>
     </div>
@@ -22,22 +22,25 @@ const base = import.meta.env.BASE_URL;
 
   <section class="py-16 bg-white">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-lg text-gray-600">
-      <p>These terms govern your use of the Art and Soul Pottery website and purchase of pottery and artwork.</p>
+      <p>These terms govern your use of the J.M. Amoedo Custom Knives website and the commissioning of custom blades.</p>
 
       <h2 class="text-gray-900">Custom Orders</h2>
-      <p>All custom orders require a minimum turn around period of one month. Inquire in store about availability of existing pottery. Custom orders may involve discussion of form, colour, and design preferences before production begins.</p>
+      <p>All knives are made to order. Lead times vary depending on current workload and will be discussed at the time of inquiry. Custom orders involve a design consultation process before production begins. Final pricing is agreed upon before work starts.</p>
 
       <h2 class="text-gray-900">Pricing</h2>
-      <p>All prices are in Canadian dollars. Applicable taxes are added additionally. Prices for custom work are determined on a per-project basis.</p>
+      <p>Pricing for custom work is determined on a per-project basis depending on design complexity, materials, and current workload. A deposit may be required before production begins.</p>
 
       <h2 class="text-gray-900">Handmade Nature</h2>
-      <p>All pottery is handmade. Slight variations in colour, size, and form are inherent to handmade work and are not considered defects. All pottery is food safe, microwave safe, and oven safe, fired to 1220°C in an electric kiln.</p>
+      <p>All knives are handmade. Slight variations from any reference images or examples are inherent to handmade work. Each blade is an original. We take care to meet agreed specifications but natural variation in materials is expected.</p>
+
+      <h2 class="text-gray-900">Safety</h2>
+      <p>Custom knives are sharp tools. By purchasing or commissioning a knife, you accept responsibility for safe handling, storage and use. These knives are intended for use by adults.</p>
 
       <h2 class="text-gray-900">Jurisdiction</h2>
-      <p>These terms are governed by the laws of British Columbia, Canada.</p>
+      <p>These terms are governed by applicable law in the jurisdiction where the maker operates.</p>
 
       <h2 class="text-gray-900">Contact</h2>
-      <p>Questions about these terms can be directed to <a href={`mailto:${config.contact.email}`} class="text-red-800">{config.contact.email}</a> or call <a href={`tel:${config.contact.phone}`} class="text-red-800">{config.contact.phone}</a>.</p>
+      <p>Questions about these terms can be directed to <a href={`mailto:${config.contact.email}`} style="color:#1c2a3a;">{config.contact.email}</a>.</p>
 
       <p class="text-sm text-gray-400 mt-8">Last updated: April 2026</p>
     </div>

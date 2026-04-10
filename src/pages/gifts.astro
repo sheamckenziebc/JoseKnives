@@ -10,77 +10,114 @@ const configPath = join(process.cwd(), 'config.yaml');
 const config = yaml.load(readFileSync(configPath, 'utf8'));
 const base = import.meta.env.BASE_URL;
 
-const categories = [
-  { name: "Jewellery", slug: "jewellery", description: "100% silver and gem, wood and sea shell jewelry — unique handcrafted pieces." },
-  { name: "Bags", slug: "bags", description: "Handcrafted bags from Nepal and Thailand." },
-  { name: "Misc", slug: "misc", description: "Prayer flags, unique gifts and other treasures from around the world." }
+const tips = [
+  {
+    title: "Wash by hand",
+    desc: "Never put a handmade knife in the dishwasher. Hot water, detergent and machine action are hard on handles and can cause steel to rust or discolour. Wash with warm soapy water and dry immediately."
+  },
+  {
+    title: "Dry completely before storing",
+    desc: "Don't leave a wet knife sitting out or in a damp drawer. Moisture causes rust on carbon steel especially. Dry thoroughly with a cloth after washing."
+  },
+  {
+    title: "Use a proper cutting surface",
+    desc: "Wood and plastic cutting boards are fine. Glass, ceramic, stone and metal surfaces will roll or chip the edge. Don't cut on plates or countertops."
+  },
+  {
+    title: "Sharpen regularly",
+    desc: "A sharp knife is safer and easier to use than a dull one. Use a quality whetstone or have it professionally sharpened. Hone on a leather strop between sharpenings to maintain the edge."
+  },
+  {
+    title: "Oil carbon steel blades",
+    desc: "Carbon steel will develop a patina with use — this is normal and actually helps protect the blade. A light coat of food-safe oil (mineral oil or camellia oil) keeps it protected during storage."
+  },
+  {
+    title: "Store safely",
+    desc: "Use a knife block, magnetic strip or blade guard. Loose knives in a drawer bang against other utensils and damage the edge. Never store in a sheath long-term as moisture can be trapped against the blade."
+  },
+  {
+    title: "Oil wooden handles",
+    desc: "Natural wood handles benefit from occasional oiling with food-safe mineral oil or linseed oil. Rub in, let it soak, wipe off the excess. This prevents drying and cracking."
+  },
+  {
+    title: "Get it re-sharpened when needed",
+    desc: "If a knife won't take a good edge with home sharpening, it may need professional attention. Reach out — I'm happy to sharpen knives I've made."
+  }
 ];
 ---
 
-<BaseLayout title={`Other Gifts | ${config.site.title}`} description="Browse unique gifts at Art and Soul Pottery — silver and gem jewellery, handcrafted bags from Nepal and Thailand, prayer flags and more.">
+<BaseLayout title={`Knife Care | ${config.site.title}`} description="How to care for your J.M. Amoedo custom knife — washing, drying, sharpening, oiling and storage tips to keep your blade performing for a lifetime.">
   <Header slot="header" />
 
   <!-- Hero -->
-  <section class="relative bg-gradient-to-br from-stone-900 via-red-900 to-stone-800 py-20">
-    <div class="absolute inset-0 opacity-5">
-      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.15&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+  <section class="relative py-24 overflow-hidden" style="background-color:#0f1923;">
+    <div class="absolute inset-0">
+      <img
+        src={`${base}assets/knife-04.jpg`}
+        alt="Caring for your custom knife"
+        class="w-full h-full object-cover opacity-20"
+      />
+      <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(15,25,35,0.92) 0%, rgba(28,42,58,0.75) 100%);"></div>
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="text-amber-400 font-semibold text-sm uppercase tracking-wider">Gallery</span>
-      <h1 class="text-4xl md:text-5xl font-bold text-white mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
-        Other <span class="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">Gifts</span>
+      <span class="font-semibold text-sm uppercase tracking-wider mb-4 block" style="color:#c8a96e;">Maintenance Guide</span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
+        Knife <span style="background: linear-gradient(90deg, #c8a96e, #e8c98e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Care</span>
       </h1>
-      <p class="text-xl text-red-100 max-w-3xl mx-auto leading-relaxed">
-        Art and Soul Pottery offers a wide selection of 100% silver and gem, wood and sea shell jewelry as well as bags and prayer flags from Nepal and Thailand.
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        A handmade knife will last a lifetime with basic care. Here's how to look after it.
       </p>
     </div>
   </section>
 
   <!-- Wave Divider -->
-  <div class="bg-gradient-to-br from-stone-900 via-red-900 to-stone-800 -mb-1">
+  <div class="-mb-1" style="background-color:#0f1923;">
     <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none">
       <path d="M0 60L60 52C120 44 240 28 360 24C480 20 600 28 720 32C840 36 960 36 1080 32C1200 28 1320 20 1380 16L1440 12V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="white"/>
     </svg>
   </div>
 
-  <!-- Gift Categories -->
+  <!-- Care Tips -->
   <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-children">
-        {categories.map((cat) => (
-          <div class="animate-on-scroll group bg-stone-50 rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-            <div class="h-56 bg-gradient-to-br from-red-100 to-amber-100 flex items-center justify-center relative overflow-hidden">
-              <img
-                src={`${base}assets/gifts-${cat.slug}.jpg`}
-                alt={`${cat.name} at Art and Soul Pottery`}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              />
-              <div class="hidden items-center justify-center absolute inset-0 bg-gradient-to-br from-red-100 to-amber-100">
-                <svg class="w-16 h-16 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/></svg>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14 animate-on-scroll">
+        <span class="font-semibold text-sm uppercase tracking-wider" style="color:#1c2a3a;">Care & Maintenance</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4" style="font-family: 'Cormorant Garamond', serif;">
+          Keep Your Blade at Its Best
+        </h2>
+        <div class="mt-4 h-1 w-16 rounded mx-auto" style="background-color:#c8a96e;"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
+        {tips.map(tip => (
+          <div class="animate-on-scroll bg-white rounded-3xl p-6 shadow-sm border border-gray-100 card-hover">
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background-color:#fef3c7;">
+                <svg class="w-4 h-4" style="color:#c8a96e;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               </div>
-              <div class="absolute top-3 right-3 bg-white/90 text-xs font-bold text-gray-700 px-2 py-1 rounded-full">{cat.name}</div>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-gray-900 mb-2" style="font-family: 'Cormorant Garamond', serif;">{cat.name}</h3>
-              <p class="text-gray-600 text-sm leading-relaxed">{cat.description}</p>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-2">{tip.title}</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">{tip.desc}</p>
+              </div>
             </div>
           </div>
         ))}
       </div>
+    </div>
+  </section>
 
-      <div class="text-center mt-12 animate-on-scroll">
-        <p class="text-gray-600 mb-6">Visit the gallery to browse our full selection of gifts, or contact us to inquire about availability.</p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href={`${base}contact/`} class="inline-flex items-center justify-center bg-red-800 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-900 transition-all shadow-lg">
-            Contact Us
-          </a>
-          <a href={`${base}gallery/`} class="inline-flex items-center justify-center border-2 border-red-800 text-red-800 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-red-50 transition-all">
-            View Pottery Gallery
-          </a>
-        </div>
-      </div>
+  <!-- Questions CTA -->
+  <section class="py-20" style="background-color:#1c2a3a;">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-white mb-4" style="font-family: 'Cormorant Garamond', serif;">
+        Questions About Your Knife?
+      </h2>
+      <p class="text-gray-300 mb-8 text-lg">
+        Get in touch — I'm happy to advise on care, sharpening or any issues with a knife I've made.
+      </p>
+      <a href={`${base}contact/`} class="inline-flex items-center justify-center bg-amber-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-amber-500 transition-all shadow-lg">
+        Contact Me
+      </a>
     </div>
   </section>
 

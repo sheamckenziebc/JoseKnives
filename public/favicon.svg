@@ -1,11 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
   <defs>
-    <linearGradient id="favGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#922b21"/>
-      <stop offset="100%" stop-color="#c0392b"/>
+    <linearGradient id="favGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c2a3a"/>
+      <stop offset="100%" stop-color="#2d4a6e"/>
     </linearGradient>
   </defs>
   <rect width="128" height="128" rx="24" fill="url(#favGrad)"/>
-  <!-- Pottery spiral -->
-  <path d="M64 28 C44 28, 32 44, 32 60 C32 76, 44 92, 64 92 C76 92, 84 84, 84 72 C84 62, 76 54, 66 54 C58 54, 52 60, 52 66 C52 72, 56 76, 62 76" fill="none" stroke="#c8a96e" stroke-width="6" stroke-linecap="round"/>
+  <!-- Knife blade -->
+  <path d="M80 24 L40 88 L50 94 L88 32 Z" fill="#c8a96e" opacity="0.9"/>
+  <!-- Handle guard -->
+  <rect x="44" y="86" width="20" height="7" rx="3" fill="#e8c98e"/>
+  <!-- Handle -->
+  <rect x="48" y="92" width="12" height="20" rx="4" fill="#8B6914"/>
+  <!-- Edge highlight -->
+  <path d="M82 26 L44 88" stroke="#f0d890" stroke-width="1.5" opacity="0.6" stroke-linecap="round"/>
 </svg>

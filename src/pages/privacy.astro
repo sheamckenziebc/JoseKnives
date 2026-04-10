@@ -11,10 +11,10 @@ const config = yaml.load(readFileSync(configPath, 'utf8'));
 const base = import.meta.env.BASE_URL;
 ---
 
-<BaseLayout title={`Privacy Policy | ${config.site.title}`} description="Privacy policy for Art and Soul Pottery." noindex={true}>
+<BaseLayout title={`Privacy Policy | ${config.site.title}`} description="Privacy policy for J.M. Amoedo Custom Knives." noindex={true}>
   <Header slot="header" />
 
-  <section class="relative bg-gradient-to-br from-stone-900 via-red-900 to-stone-800 py-16">
+  <section class="relative py-16" style="background-color:#1c2a3a;">
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h1 class="text-4xl font-bold text-white" style="font-family: 'Cormorant Garamond', serif;">Privacy Policy</h1>
     </div>
@@ -22,19 +22,19 @@ const base = import.meta.env.BASE_URL;
 
   <section class="py-16 bg-white">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 prose prose-lg text-gray-600">
-      <p>Art and Soul Pottery ("we", "us") respects your privacy. This policy describes how we collect and use information through our website.</p>
+      <p>J.M. Amoedo Custom Knives ("we", "us") respects your privacy. This policy describes how we collect and use information through our website.</p>
 
       <h2 class="text-gray-900">Information We Collect</h2>
       <p>We only collect information you voluntarily provide through our contact form, including your name, email address, and message content. We do not use cookies for tracking or advertising.</p>
 
       <h2 class="text-gray-900">How We Use Your Information</h2>
-      <p>Information submitted through our contact form is used solely to respond to your inquiry about pottery, custom orders, or studio visits. We do not sell, trade, or share your personal information with third parties.</p>
+      <p>Information submitted through our contact form is used solely to respond to your inquiry about custom knife orders or general questions. We do not sell, trade, or share your personal information with third parties.</p>
 
       <h2 class="text-gray-900">Third-Party Services</h2>
-      <p>Our contact form is processed through Formspree. Their privacy policy governs data they process on our behalf. Our map is powered by OpenStreetMap.</p>
+      <p>Our contact form is processed through Formspree. Their privacy policy governs data they process on our behalf.</p>
 
       <h2 class="text-gray-900">Contact</h2>
-      <p>If you have questions about this privacy policy, please contact us at <a href={`mailto:${config.contact.email}`} class="text-red-800">{config.contact.email}</a> or call <a href={`tel:${config.contact.phone}`} class="text-red-800">{config.contact.phone}</a>.</p>
+      <p>If you have questions about this privacy policy, please contact us at <a href={`mailto:${config.contact.email}`} style="color:#1c2a3a;">{config.contact.email}</a>.</p>
 
       <p class="text-sm text-gray-400 mt-8">Last updated: April 2026</p>
     </div>

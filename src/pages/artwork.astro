@@ -10,71 +10,176 @@ const configPath = join(process.cwd(), 'config.yaml');
 const config = yaml.load(readFileSync(configPath, 'utf8'));
 const base = import.meta.env.BASE_URL;
 
-const categories = [
-  { name: "Paintings", slug: "paintings", description: "Original paintings by Franziska Cody, inspired by the natural beauty of the Bulkley Valley." },
-  { name: "Sculptures & Murals", slug: "sculptures", description: "Three-dimensional works and wall murals crafted from clay and mixed media." },
-  { name: "Cards & Photography", slug: "cards", description: "Art cards and photography capturing the spirit of the region." },
-  { name: "Other Artisans", slug: "artisans", description: "Curated work from talented local and BC artisans." }
+const steps = [
+  {
+    number: "01",
+    title: "Get in Touch",
+    desc: "Send an email describing what you have in mind — knife type, intended use, any handle material or steel preferences, and budget if you have one. No idea is too vague to start with."
+  },
+  {
+    number: "02",
+    title: "Design Discussion",
+    desc: "We'll go back and forth on the details: blade profile, length, grind, handle shape and materials. Photos of similar work are welcome. This stage ensures the knife is built around your needs."
+  },
+  {
+    number: "03",
+    title: "Forging & Grinding",
+    desc: "Work begins at the forge. The blade profile is cut and shaped, then ground to geometry. Heat treatment is done in-house to achieve the target hardness for the steel selected."
+  },
+  {
+    number: "04",
+    title: "Handle Work & Finishing",
+    desc: "Handle materials are shaped, fitted and secured. The blade is hand-sanded through progressive grits to the agreed finish. Every edge is sharpened before the knife goes out."
+  },
+  {
+    number: "05",
+    title: "Delivery",
+    desc: "Completed knives are shipped carefully or arranged for pickup. A basic care card is included. Lead time varies — typically several weeks depending on current workload."
+  }
 ];
 ---
 
-<BaseLayout title={`Other Artwork | ${config.site.title}`} description="Browse paintings, sculptures, murals, cards, photography and work from other artisans at Art and Soul Pottery in Telkwa, BC.">
+<BaseLayout title={`Custom Orders | ${config.site.title}`} description="How to commission a custom knife from J.M. Amoedo. Every blade is made to order — from design consultation through forging, finishing and delivery.">
   <Header slot="header" />
 
   <!-- Hero -->
-  <section class="relative bg-gradient-to-br from-stone-900 via-red-900 to-stone-800 py-20">
-    <div class="absolute inset-0 opacity-5">
-      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.15&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+  <section class="relative py-24 overflow-hidden" style="background-color:#0f1923;">
+    <div class="absolute inset-0">
+      <img
+        src={`${base}assets/knife-09.jpg`}
+        alt="Custom knife commission process"
+        class="w-full h-full object-cover opacity-20"
+      />
+      <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(15,25,35,0.92) 0%, rgba(28,42,58,0.75) 100%);"></div>
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="text-amber-400 font-semibold text-sm uppercase tracking-wider">Gallery</span>
-      <h1 class="text-4xl md:text-5xl font-bold text-white mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
-        Other <span class="bg-gradient-to-r from-amber-300 to-amber-500 bg-clip-text text-transparent">Artwork</span>
+      <span class="font-semibold text-sm uppercase tracking-wider mb-4 block" style="color:#c8a96e;">Bespoke Blades</span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
+        Custom <span style="background: linear-gradient(90deg, #c8a96e, #e8c98e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Orders</span>
       </h1>
-      <p class="text-xl text-red-100 max-w-3xl mx-auto leading-relaxed">
-        Art and Soul Pottery also offers other artwork including paintings, sculptures and murals by Franziska Cody, and work from other artisans.
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        Every knife starts with a conversation. Here's how to commission one.
       </p>
     </div>
   </section>
 
   <!-- Wave Divider -->
-  <div class="bg-gradient-to-br from-stone-900 via-red-900 to-stone-800 -mb-1">
+  <div class="-mb-1" style="background-color:#0f1923;">
     <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none">
       <path d="M0 60L60 52C120 44 240 28 360 24C480 20 600 28 720 32C840 36 960 36 1080 32C1200 28 1320 20 1380 16L1440 12V60H1380C1320 60 1200 60 1080 60C960 60 840 60 720 60C600 60 480 60 360 60C240 60 120 60 60 60H0Z" fill="white"/>
     </svg>
   </div>
 
-  <!-- Artwork Categories -->
+  <!-- Process Steps -->
   <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 stagger-children">
-        {categories.map((cat) => (
-          <div class="animate-on-scroll group bg-stone-50 rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-            <div class="h-56 bg-gradient-to-br from-red-100 to-amber-100 flex items-center justify-center relative overflow-hidden">
-              <img
-                src={`${base}assets/artwork-${cat.slug}.jpg`}
-                alt={`${cat.name} at Art and Soul Pottery`}
-                class="w-full h-full object-cover"
-                loading="lazy"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              />
-              <div class="hidden items-center justify-center absolute inset-0 bg-gradient-to-br from-red-100 to-amber-100">
-                <svg class="w-16 h-16 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-              </div>
-              <div class="absolute top-3 right-3 bg-white/90 text-xs font-bold text-gray-700 px-2 py-1 rounded-full">{cat.name}</div>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-gray-900 mb-2" style="font-family: 'Cormorant Garamond', serif;">{cat.name}</h3>
-              <p class="text-gray-600 text-sm leading-relaxed">{cat.description}</p>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14 animate-on-scroll">
+        <span class="font-semibold text-sm uppercase tracking-wider" style="color:#1c2a3a;">The Process</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4" style="font-family: 'Cormorant Garamond', serif;">
+          From Inquiry to Finished Knife
+        </h2>
+        <div class="mt-4 h-1 w-16 rounded mx-auto" style="background-color:#c8a96e;"></div>
+      </div>
+
+      <div class="space-y-8 stagger-children">
+        {steps.map(step => (
+          <div class="animate-on-scroll flex gap-6 items-start bg-white rounded-3xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+            <div class="text-4xl font-extrabold flex-shrink-0 w-16 text-right leading-none mt-1" style="color:#c8a96e; font-family: 'Cormorant Garamond', serif;">{step.number}</div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2" style="font-family: 'Cormorant Garamond', serif;">{step.title}</h3>
+              <p class="text-gray-600 leading-relaxed">{step.desc}</p>
             </div>
           </div>
         ))}
       </div>
+    </div>
+  </section>
 
-      <div class="text-center mt-12 animate-on-scroll">
-        <p class="text-gray-600 mb-6">To purchase artwork or inquire about availability, please contact us.</p>
-        <a href={`${base}contact/`} class="inline-flex items-center justify-center bg-red-800 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-900 transition-all shadow-lg">
-          Contact Us
+  <!-- What to Include -->
+  <section class="py-20" style="background-color:#f5f1e8;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+        <div class="animate-on-scroll">
+          <span class="font-semibold text-sm uppercase tracking-wider" style="color:#1c2a3a;">Your Inquiry</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-6" style="font-family: 'Cormorant Garamond', serif;">
+            What to Include in Your Message
+          </h2>
+          <div class="space-y-4">
+            {[
+              "What type of knife you're looking for (chef's, hunter, collector, etc.)",
+              "Intended primary use",
+              "Approximate blade length or overall size preference",
+              "Handle material preferences (wood, bone, synthetic, etc.)",
+              "Any finish preference (satin, mirror, patina, etc.)",
+              "Budget range if you have one",
+              "Photos or references of styles you like"
+            ].map(item => (
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background-color:#1c2a3a;">
+                  <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <p class="text-gray-700">{item}</p>
+              </div>
+            ))}
+          </div>
+          <p class="mt-6 text-gray-500 text-sm italic">
+            Don't worry if you don't have all the answers — the conversation will help clarify the details.
+          </p>
+        </div>
+        <div class="animate-on-scroll">
+          <div class="rounded-3xl p-8 md:p-10" style="background-color:#1c2a3a;">
+            <h3 class="text-2xl font-bold text-white mb-2" style="font-family: 'Cormorant Garamond', serif;">Ready to Start?</h3>
+            <p class="text-gray-300 mb-6 leading-relaxed">Send an email to begin the conversation. I'll respond as soon as I can.</p>
+            <a
+              href={`mailto:${config.contact.email}`}
+              class="inline-flex items-center bg-amber-600 text-white px-6 py-3.5 rounded-xl font-bold hover:bg-amber-500 transition-all mb-6 w-full justify-center"
+            >
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              {config.contact.email}
+            </a>
+            <a
+              href={`${base}contact/`}
+              class="inline-flex items-center border-2 border-white/30 text-white px-6 py-3.5 rounded-xl font-semibold hover:bg-white/10 transition-all w-full justify-center"
+            >
+              Use the Contact Form
+            </a>
+            <div class="mt-8 pt-6 border-t border-white/10">
+              <p class="text-gray-400 text-sm">
+                All knives are made to order. Lead time depends on current workload — usually a few weeks. Ask when you get in touch.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sample Work -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 animate-on-scroll">
+        <span class="font-semibold text-sm uppercase tracking-wider" style="color:#1c2a3a;">Examples</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4" style="font-family: 'Cormorant Garamond', serif;">
+          Past Custom Orders
+        </h2>
+        <div class="mt-4 h-1 w-16 rounded mx-auto" style="background-color:#c8a96e;"></div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 stagger-children">
+        {[9,10,14,16].map((n) => (
+          <div class="animate-on-scroll overflow-hidden rounded-2xl aspect-square bg-gray-100">
+            <img
+              src={`${base}assets/knife-${String(n).padStart(2,'0')}.jpg`}
+              alt="Custom commissioned knife by J.M. Amoedo"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              onerror="this.parentElement.style.display='none';"
+            />
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-10 animate-on-scroll">
+        <a href={`${base}gallery/`} class="inline-flex items-center justify-center text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all shadow-lg hover:-translate-y-0.5" style="background-color:#1c2a3a;">
+          View Full Gallery
         </a>
       </div>
     </div>
